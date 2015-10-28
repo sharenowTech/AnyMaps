@@ -1,0 +1,12 @@
+project.ext.commonPomSetUp = { MavenPom pom ->
+    pom.project {
+        packaging 'aar'
+        url 'https://stash.intapps.it/projects/IMSAND/repos/c2g-maps'
+
+        scm {
+            url 'scm:git@stash.intapps.it:7999/imsand/c2g-maps.git'
+            connection 'scm:git@stash.intapps.it:7999/imsand/c2g-maps.git'
+            developerConnection 'scm:git@stash.intapps.it:7999/imsand/c2g-maps.git'
+        }
+    }
+}

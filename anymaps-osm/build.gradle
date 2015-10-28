@@ -5,6 +5,32 @@
  */
 
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
+apply from: '../deployUtils.gradle'
+
+group = "net.doo.anylibs"
+version = "${project.versionMajor}.${project.versionMinor}.${project.versionPatch}"
+
+uploadArchives {
+    configuration = configurations.archives
+    repositories {
+        mavenDeployer {
+            repository(url: "http://repos.mytaxi.com:8081/artifactory/car2go") {
+                authentication(userName: ldapUsername, password: ldapPassword)
+            }
+
+            project.commonPomSetUp pom
+
+            pom.project {
+                name 'AnyMaps - Open Street Maps'
+                artifactId = 'anymaps.osm'
+                version = project.version
+
+                description 'Open Street Maps version of AnyMaps'
+            }
+        }
+    }
+}
 
 android {
     compileSdkVersion 22

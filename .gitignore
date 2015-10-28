@@ -1,0 +1,25 @@
+# build artifacts
+gen/
+.gradle/
+build/
+local.properties
+dist/
+captures/
+
+#idea folder: we generally ignore all IDEA settings but some special ones
+.idea/*
+!.idea/copyright/
+!.idea/codeStyleSettings.xml
+
+
+# remove apple junk
+.DS_Store
+
+# ignore IDEA project defs
+*.iml
+
+# wsumock temporary files
+wsumock/*/
+
+# auth-library for those who did not yet migrated to artifactory
+auth/

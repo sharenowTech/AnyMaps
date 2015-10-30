@@ -20,11 +20,11 @@ task installArchives(type: Upload) {
             project.commonPomSetUp pom
 
             pom.project {
-                name 'AnyMaps - Base Library'
-                artifactId = 'anymaps.base'
+                name 'AnyMaps - Baidu Maps'
+                artifactId = 'anymaps.baidu'
                 version = project.version
 
-                description 'Base library for AnyMaps libraries. Contains common interface'
+                description 'Baidu Maps version of AnyMaps'
             }
 
             setUniqueVersion false;
@@ -43,11 +43,11 @@ uploadArchives {
             project.commonPomSetUp pom
 
             pom.project {
-                name 'AnyMaps - Base Library'
-                artifactId = 'anymaps.base'
+                name 'AnyMaps - Open Street Maps'
+                artifactId = 'anymaps.osm'
                 version = project.version
 
-                description 'Base library for AnyMaps libraries. Contains common interface'
+                description 'Open Street Maps version of AnyMaps'
             }
         }
     }
@@ -59,7 +59,7 @@ android {
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -68,4 +68,10 @@ android {
             minifyEnabled false
         }
     }
+}
+
+dependencies {
+    compile project(':anymaps-base')
+
+    compile files('libs/baidu_sdk_v3.6.jar')
 }

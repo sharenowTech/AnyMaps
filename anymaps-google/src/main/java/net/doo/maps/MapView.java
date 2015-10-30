@@ -27,119 +27,119 @@ import static java.util.EnumSet.of;
  */
 public class MapView extends MapContainerView {
 
-	private com.google.android.gms.maps.MapView wrappedMapView;
+    private com.google.android.gms.maps.MapView wrappedMapView;
 
-	private AnyMap map;
+    private AnyMap map;
 
-	/**
-	 * Provides capabilities of the {@link AnyMap} implementation. If some features are not supported
-	 * and you will try to call them - nothing will happen.
-	 *
-	 * @return capabilities of the {@link AnyMap} implementation.
-	 */
-	public static Set<AnyMap.Capability> getCapabilities() {
-		return unmodifiableSet(of(AnyMap.Capability.MAP_TYPES, AnyMap.Capability.TRAFFIC_LAYER));
-	}
+    /**
+     * Provides capabilities of the {@link AnyMap} implementation. If some features are not supported
+     * and you will try to call them - nothing will happen.
+     *
+     * @return capabilities of the {@link AnyMap} implementation.
+     */
+    public static Set<AnyMap.Capability> getCapabilities() {
+        return unmodifiableSet(of(AnyMap.Capability.MAP_TYPES, AnyMap.Capability.TRAFFIC_LAYER, AnyMap.Capability.REVEALABLE));
+    }
 
-	public MapView(Context context) {
-		super(context);
+    public MapView(Context context) {
+        super(context);
 
-		initView(context, null);
-	}
+        initView(context, null);
+    }
 
-	public MapView(Context context, AttributeSet attrs) {
-		super(context, attrs);
+    public MapView(Context context, AttributeSet attrs) {
+        super(context, attrs);
 
-		initView(context, attrs);
-	}
+        initView(context, attrs);
+    }
 
-	private void initView(Context context, AttributeSet attrs) {
-		GoogleMapOptions googleMapOptions = readOptions(context, attrs);
+    private void initView(Context context, AttributeSet attrs) {
+        GoogleMapOptions googleMapOptions = readOptions(context, attrs);
 
-		wrappedMapView = new com.google.android.gms.maps.MapView(context, googleMapOptions);
+        wrappedMapView = new com.google.android.gms.maps.MapView(context, googleMapOptions);
 
-		addView(wrappedMapView);
-	}
+        addView(wrappedMapView);
+    }
 
-	private GoogleMapOptions readOptions(Context context, AttributeSet attrs) {
-		GoogleMapOptions options = new GoogleMapOptions();
+    private GoogleMapOptions readOptions(Context context, AttributeSet attrs) {
+        GoogleMapOptions options = new GoogleMapOptions();
 
-		if (attrs == null) {
-			return options;
-		}
+        if (attrs == null) {
+            return options;
+        }
 
-		TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MapView);
-		try {
-			options = options.liteMode(
-					typedArray.getBoolean(R.styleable.MapView_anyMapLiteMode, false)
-			);
-		} finally {
-			typedArray.recycle();
-		}
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MapView);
+        try {
+            options = options.liteMode(
+                    typedArray.getBoolean(R.styleable.MapView_anyMapLiteMode, false)
+            );
+        } finally {
+            typedArray.recycle();
+        }
 
-		return options;
-	}
+        return options;
+    }
 
-	@Override
-	public AnyMap getMap() {
-		if (map == null) {
-			map = new GoogleMapAdapter(wrappedMapView.getMap());
-		}
+    @Override
+    public AnyMap getMap() {
+        if (map == null) {
+            map = new GoogleMapAdapter(wrappedMapView.getMap());
+        }
 
-		return map;
-	}
+        return map;
+    }
 
-	@Override
-	public void getMapAsync(final OnMapReadyCallback callback) {
-		if (map != null) {
-			callback.onMapReady(map);
-			return;
-		}
+    @Override
+    public void getMapAsync(final OnMapReadyCallback callback) {
+        if (map != null) {
+            callback.onMapReady(map);
+            return;
+        }
 
-		wrappedMapView.getMapAsync(new com.google.android.gms.maps.OnMapReadyCallback() {
-			@Override
-			public void onMapReady(GoogleMap googleMap) {
-				if (map == null) {
-					map = new GoogleMapAdapter(googleMap);
-				}
+        wrappedMapView.getMapAsync(new com.google.android.gms.maps.OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                if (map == null) {
+                    map = new GoogleMapAdapter(googleMap);
+                }
 
-				callback.onMapReady(map);
-			}
-		});
-	}
+                callback.onMapReady(map);
+            }
+        });
+    }
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		wrappedMapView.onCreate(savedInstanceState);
-	}
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        wrappedMapView.onCreate(savedInstanceState);
+    }
 
-	@Override
-	public void onResume() {
-		wrappedMapView.onResume();
-	}
+    @Override
+    public void onResume() {
+        wrappedMapView.onResume();
+    }
 
-	@Override
-	public void onPause() {
-		wrappedMapView.onPause();
-	}
+    @Override
+    public void onPause() {
+        wrappedMapView.onPause();
+    }
 
-	@Override
-	public void onDestroy() {
-		if (map != null) {
-			map.setMyLocationEnabled(false);
-		}
+    @Override
+    public void onDestroy() {
+        if (map != null) {
+            map.setMyLocationEnabled(false);
+        }
 
-		wrappedMapView.onDestroy();
-	}
+        wrappedMapView.onDestroy();
+    }
 
-	@Override
-	public void onLowMemory() {
-		wrappedMapView.onLowMemory();
-	}
+    @Override
+    public void onLowMemory() {
+        wrappedMapView.onLowMemory();
+    }
 
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		wrappedMapView.onSaveInstanceState(outState);
-	}
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        wrappedMapView.onSaveInstanceState(outState);
+    }
 
 }

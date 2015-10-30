@@ -11,6 +11,27 @@ apply from: '../deployUtils.gradle'
 group = "net.doo.anylibs"
 version = "${project.versionMajor}.${project.versionMinor}.${project.versionPatch}"
 
+task installArchives(type: Upload) {
+    configuration = configurations.archives
+    repositories {
+        mavenDeployer {
+            repository(url: 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath)
+
+            project.commonPomSetUp pom
+
+            pom.project {
+                name 'AnyMaps - Google Maps'
+                artifactId = 'anymaps.google'
+                version = project.version
+
+                description 'Google version of AnyMaps'
+            }
+
+            setUniqueVersion false;
+        }
+    }
+}
+
 uploadArchives {
     configuration = configurations.archives
     repositories {

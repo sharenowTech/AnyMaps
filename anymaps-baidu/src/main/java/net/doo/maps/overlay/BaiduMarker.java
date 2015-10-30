@@ -13,9 +13,16 @@ import net.doo.maps.model.Marker;
 public class BaiduMarker implements Marker {
 
 	private final com.baidu.mapapi.map.Marker marker;
+	private com.baidu.mapapi.model.LatLng tempPosition;
+
 
 	public BaiduMarker(com.baidu.mapapi.map.Marker marker) {
 		this.marker = marker;
+		tempPosition = marker.getPosition();
+		if (!marker.isVisible()) {
+			hide();
+		}
+
 	}
 
 	@Override
@@ -33,11 +40,29 @@ public class BaiduMarker implements Marker {
 		// Do nothing
 	}
 
+	private void hide() {
+		marker.setVisible(false);
+		marker.setPosition(new com.baidu.mapapi.model.LatLng(0, 0));
+	}
+
+	private void show() {
+		marker.setPosition(tempPosition);
+		marker.setVisible(true);
+	}
+
+
 	@Override
 	public void setVisible(final boolean visible) {
-		if (marker.isVisible() != visible) {
-			marker.setVisible(visible);
+		if (visible == marker.isVisible()) {
+			return;
 		}
+
+		if (visible) {
+			show();
+		} else {
+			hide();
+		}
+
 	}
 
 	@Override

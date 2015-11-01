@@ -34,12 +34,14 @@ import net.doo.maps.overlay.OutConverter;
 public class BaiduMap implements AnyMap {
 
 	private final MapView mapView;
+	private final com.baidu.mapapi.map.BaiduMap map;
 
 	BaiduMap(MapView mapView) {
 		this.mapView = mapView;
-		
-		mapView.getMap().getUiSettings().setCompassEnabled(false);
-		mapView.getMap().getUiSettings().setRotateGesturesEnabled(false);
+
+		map = mapView.getMap();
+		map.getUiSettings().setCompassEnabled(false);
+		map.getUiSettings().setRotateGesturesEnabled(false);
 	}
 
 	@Override
@@ -77,11 +79,11 @@ public class BaiduMap implements AnyMap {
 		}
 
 		if (!animate) {
-			mapView.getMap().setMapStatus(mapStatusUpdate);
+			map.setMapStatus(mapStatusUpdate);
 		} else if (duration == null) {
-			mapView.getMap().animateMapStatus(mapStatusUpdate);
+			map.animateMapStatus(mapStatusUpdate);
 		} else {
-			mapView.getMap().animateMapStatus(mapStatusUpdate, duration);
+			map.animateMapStatus(mapStatusUpdate, duration);
 		}
 	}
 
@@ -95,8 +97,8 @@ public class BaiduMap implements AnyMap {
 		return new BaiduProjection(
 				new VisibleRegion(
 						new LatLngBounds(
-								OutConverter.convert(mapView.getMap().getMapStatus().bound.southwest),
-								OutConverter.convert(mapView.getMap().getMapStatus().bound.northeast)
+								OutConverter.convert(map.getMapStatus().bound.southwest),
+								OutConverter.convert(map.getMapStatus().bound.northeast)
 						)
 				)
 		);
@@ -104,28 +106,28 @@ public class BaiduMap implements AnyMap {
 
 	@Override
 	public Marker addMarker(MarkerOptions options) {
-		com.baidu.mapapi.map.Marker marker = (com.baidu.mapapi.map.Marker) mapView.getMap().addOverlay(Converter.convert(options));
+		com.baidu.mapapi.map.Marker marker = (com.baidu.mapapi.map.Marker) map.addOverlay(Converter.convert(options));
 		return OutConverter.convert(marker);
 	}
 
 	@Override
 	public Circle addCircle(CircleOptions options) {
-		com.baidu.mapapi.map.Circle circle = (com.baidu.mapapi.map.Circle) mapView.getMap().addOverlay(Converter.convert(options));
+		com.baidu.mapapi.map.Circle circle = (com.baidu.mapapi.map.Circle) map.addOverlay(Converter.convert(options));
 		return OutConverter.convert(circle);
 	}
 
 	@Override
 	public Polygon addPolygon(PolygonOptions options) {
 		// TODO Make it a polygon again
-		com.baidu.mapapi.map.Polyline polyline = (com.baidu.mapapi.map.Polyline) mapView.getMap().addOverlay(Converter.convertToPolyline(options));
-		return OutConverter.convertToPolygon(mapView.getMap(), polyline);
+		com.baidu.mapapi.map.Polyline polyline = (com.baidu.mapapi.map.Polyline) map.addOverlay(Converter.convertToPolyline(options));
+		return OutConverter.convertToPolygon(map, polyline);
 //		com.baidu.mapapi.mapView.Polygon polygon = (com.baidu.mapapi.mapView.Polygon) mapView.getMap().addOverlay(Converterconvert(options));
 //		return OutConverter.convert(polygon);
 	}
 
 	@Override
 	public Polyline addPolyline(final PolylineOptions options) {
-		com.baidu.mapapi.map.Polyline polyline = (com.baidu.mapapi.map.Polyline) mapView.getMap().addOverlay(Converter.convert(options));
+		com.baidu.mapapi.map.Polyline polyline = (com.baidu.mapapi.map.Polyline) map.addOverlay(Converter.convert(options));
 		return OutConverter.convert(polyline);
 	}
 
@@ -134,12 +136,12 @@ public class BaiduMap implements AnyMap {
 		return new UiSettings() {
 			@Override
 			public void setAllGesturesEnabled(boolean enabled) {
-				mapView.getMap().getUiSettings().setAllGesturesEnabled(enabled);
+				map.getUiSettings().setAllGesturesEnabled(enabled);
 			}
 
 			@Override
 			public void setMyLocationButtonEnabled(boolean enabled) {
-				mapView.getMap().setMyLocationEnabled(enabled);
+				map.setMyLocationEnabled(enabled);
 			}
 
 			@Override
@@ -151,7 +153,7 @@ public class BaiduMap implements AnyMap {
 
 	@Override
 	public void setOnMapClickListener(final OnMapClickListener listener) {
-		mapView.getMap().setOnMapClickListener(new com.baidu.mapapi.map.BaiduMap.OnMapClickListener() {
+		map.setOnMapClickListener(new com.baidu.mapapi.map.BaiduMap.OnMapClickListener() {
 			@Override
 			public void onMapClick(com.baidu.mapapi.model.LatLng latLng) {
 				listener.onMapClick(convert(latLng));
@@ -166,7 +168,7 @@ public class BaiduMap implements AnyMap {
 
 	@Override
 	public void setOnMapLongClickListener(final OnMapLongClickListener listener) {
-		mapView.getMap().setOnMapLongClickListener(new com.baidu.mapapi.map.BaiduMap.OnMapLongClickListener() {
+		map.setOnMapLongClickListener(new com.baidu.mapapi.map.BaiduMap.OnMapLongClickListener() {
 			@Override
 			public void onMapLongClick(com.baidu.mapapi.model.LatLng latLng) {
 				listener.onMapLongClick(convert(latLng));
@@ -180,7 +182,7 @@ public class BaiduMap implements AnyMap {
 
 	@Override
 	public void setOnCameraChangeListener(final OnCameraChangeListener listener) {
-		mapView.getMap().setOnMapStatusChangeListener(new com.baidu.mapapi.map.BaiduMap.OnMapStatusChangeListener() {
+		map.setOnMapStatusChangeListener(new com.baidu.mapapi.map.BaiduMap.OnMapStatusChangeListener() {
 			@Override
 			public void onMapStatusChangeStart(MapStatus mapStatus) {
 				listener.onCameraChange(OutConverter.convert(mapStatus));
@@ -200,11 +202,11 @@ public class BaiduMap implements AnyMap {
 
 	@Override
 	public void setOnMarkerClickListener(final OnMarkerClickListener listener) {
-		mapView.getMap().setOnMarkerClickListener(new com.baidu.mapapi.map.BaiduMap.OnMarkerClickListener() {
+		map.setOnMarkerClickListener(new com.baidu.mapapi.map.BaiduMap.OnMarkerClickListener() {
 			@Override
 			public boolean onMarkerClick(com.baidu.mapapi.map.Marker marker) {
-					listener.onMarkerClick(OutConverter.convert(marker));
-					return true;
+				listener.onMarkerClick(OutConverter.convert(marker));
+				return true;
 			}
 		});
 	}
@@ -216,23 +218,23 @@ public class BaiduMap implements AnyMap {
 
 	@Override
 	public void setTrafficEnabled(boolean enabled) {
-		mapView.getMap().setTrafficEnabled(enabled);
+		map.setTrafficEnabled(enabled);
 	}
 
 	@Override
 	public void setMyLocationEnabled(boolean enabled) {
-		mapView.getMap().setMyLocationEnabled(enabled);
+		map.setMyLocationEnabled(enabled);
 	}
 
 	@Override
 	public void setMapType(Type type) {
 		switch (type) {
 			case SATELLITE:
-				mapView.getMap().setMapType(com.baidu.mapapi.map.BaiduMap.MAP_TYPE_SATELLITE);
+				map.setMapType(com.baidu.mapapi.map.BaiduMap.MAP_TYPE_SATELLITE);
 				break;
 			case NORMAL:
 			default:
-				mapView.getMap().setMapType(com.baidu.mapapi.map.BaiduMap.MAP_TYPE_NORMAL);
+				map.setMapType(com.baidu.mapapi.map.BaiduMap.MAP_TYPE_NORMAL);
 				break;
 		}
 	}
@@ -250,7 +252,7 @@ public class BaiduMap implements AnyMap {
 	}
 
 	private CameraPosition currentCameraPosition() {
-		MapStatus mapStatus = mapView.getMap().getMapStatus();
+		MapStatus mapStatus = map.getMapStatus();
 
 		return new CameraPosition(
 				new LatLng(mapStatus.target.latitude, mapStatus.target.longitude),
@@ -260,7 +262,7 @@ public class BaiduMap implements AnyMap {
 
 	@Override
 	public void onUserLocationChanged(LatLng location, float accuracy) {
-		mapView.getMap().setMyLocationData(new MyLocationData.Builder().latitude(location.latitude).longitude(location.longitude).accuracy(accuracy).build());
+		map.setMyLocationData(new MyLocationData.Builder().latitude(location.latitude).longitude(location.longitude).accuracy(accuracy).build());
 	}
 
 }

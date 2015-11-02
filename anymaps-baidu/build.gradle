@@ -43,11 +43,11 @@ uploadArchives {
             project.commonPomSetUp pom
 
             pom.project {
-                name 'AnyMaps - Open Street Maps'
-                artifactId = 'anymaps.osm'
+                name 'AnyMaps - Baidu Maps'
+                artifactId = 'anymaps.baidu'
                 version = project.version
 
-                description 'Open Street Maps version of AnyMaps'
+                description 'Baidu Maps version of AnyMaps'
             }
         }
     }

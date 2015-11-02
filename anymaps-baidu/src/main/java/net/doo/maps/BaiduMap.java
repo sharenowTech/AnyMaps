@@ -118,11 +118,8 @@ public class BaiduMap implements AnyMap {
 
 	@Override
 	public Polygon addPolygon(PolygonOptions options) {
-		// TODO Make it a polygon again
-		com.baidu.mapapi.map.Polyline polyline = (com.baidu.mapapi.map.Polyline) map.addOverlay(Converter.convertToPolyline(options));
-		return OutConverter.convertToPolygon(map, polyline);
-//		com.baidu.mapapi.mapView.Polygon polygon = (com.baidu.mapapi.mapView.Polygon) mapView.getMap().addOverlay(Converterconvert(options));
-//		return OutConverter.convert(polygon);
+		com.baidu.mapapi.map.Polygon polygon = (com.baidu.mapapi.map.Polygon) map.addOverlay(Converter.convert(options));
+		return OutConverter.convert(polygon);
 	}
 
 	@Override

@@ -87,11 +87,4 @@ public final class Converter {
 				.stroke(new Stroke(Math.round(options.getStrokeWidth()), options.getStrokeColor()))
 				.fillColor(options.getFillColor());
 	}
-
-	public static OverlayOptions convertToPolyline(PolygonOptions options) {
-		return new com.baidu.mapapi.map.PolylineOptions()
-				.color(options.getStrokeColor())
-				.width(Math.round(options.getStrokeWidth()))
-				.points(convert(options.getPoints()));
-	}
 }

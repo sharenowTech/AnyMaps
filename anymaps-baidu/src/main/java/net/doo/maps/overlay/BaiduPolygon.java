@@ -6,6 +6,10 @@
 
 package net.doo.maps.overlay;
 
+import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.PolygonOptions;
+import com.baidu.mapapi.map.Stroke;
+
 import net.doo.maps.model.LatLng;
 import net.doo.maps.model.Polygon;
 
@@ -13,15 +17,25 @@ import java.util.List;
 
 public class BaiduPolygon implements Polygon {
 
-	private final com.baidu.mapapi.map.Polygon polygon;
+	private com.baidu.mapapi.map.Polygon polygon;
+	private BaiduMap map;
 
 	public BaiduPolygon(com.baidu.mapapi.map.Polygon polygon) {
 		this.polygon = polygon;
 	}
 
+	public BaiduPolygon(BaiduMap map) {
+		this.map = map;
+	}
+
 	@Override
 	public void setHoles(List<List<LatLng>> holes) {
-		// TODO
+		for (List<LatLng> hole : holes) {
+			com.baidu.mapapi.map.Overlay polygon = map.addOverlay(new PolygonOptions()
+					.fillColor(0x4499FF99)
+					.points(Converter.convert(hole))
+					.stroke(new Stroke(8, 0xa600aff8)));
+		}
 	}
 
 	@Override

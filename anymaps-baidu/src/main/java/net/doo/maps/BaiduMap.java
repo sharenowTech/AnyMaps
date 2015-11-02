@@ -25,6 +25,7 @@ import net.doo.maps.model.PolygonOptions;
 import net.doo.maps.model.Polyline;
 import net.doo.maps.model.PolylineOptions;
 import net.doo.maps.model.VisibleRegion;
+import net.doo.maps.overlay.BaiduPolygon;
 import net.doo.maps.overlay.Converter;
 import net.doo.maps.overlay.OutConverter;
 
@@ -118,7 +119,15 @@ public class BaiduMap implements AnyMap {
 
 	@Override
 	public Polygon addPolygon(PolygonOptions options) {
+		if (options.isOutsider()) {
+			// return empty polygon
+			// it is used for holes later
+			return new BaiduPolygon(map);
+		}
+
 		com.baidu.mapapi.map.Polygon polygon = (com.baidu.mapapi.map.Polygon) map.addOverlay(Converter.convert(options));
+		// draw it on top of "outsider" polygon
+		polygon.setZIndex(1);
 		return OutConverter.convert(polygon);
 	}
 

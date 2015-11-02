@@ -15,8 +15,6 @@ import net.doo.maps.AnyMap;
 import net.doo.maps.MapContainerView;
 import net.doo.maps.OnMapReadyCallback;
 
-import java.util.concurrent.ExecutionException;
-
 
 /**
  * @see net.doo.maps.MapPresenter
@@ -36,20 +34,16 @@ public class MapView extends MapContainerView {
 	}
 
 	private void initView(Context context, AttributeSet attrs) {
-		try {
-			com.baidu.mapapi.map.MapView mapView = new com.baidu.mapapi.map.MapView(context, attrs);
-			addView(mapView);
+		com.baidu.mapapi.map.MapView mapView = new com.baidu.mapapi.map.MapView(context, attrs);
+		addView(mapView);
 
 
-			mapView.showZoomControls(false);
-			anyMap = new BaiduMap(mapView);
+		mapView.showZoomControls(false);
+		anyMap = new BaiduMap(mapView);
 
-			setClipToPadding(false);
+		setClipToPadding(false);
 
-			applyAttributes(context, attrs);
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
+		applyAttributes(context, attrs);
 	}
 
 	private void applyAttributes(Context context, AttributeSet attrs) {

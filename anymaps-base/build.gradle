@@ -54,7 +54,7 @@ uploadArchives {
 }
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 23
     buildToolsVersion "22.0.1"
 
     defaultConfig {
@@ -68,4 +68,7 @@ android {
             minifyEnabled false
         }
     }
+}
+dependencies {
+    compile 'com.android.support:support-annotations:23.1.0'
 }

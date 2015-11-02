@@ -10,3 +10,24 @@ project.ext.commonPomSetUp = { MavenPom pom ->
         }
     }
 }
+
+configurations {
+    archives {
+        extendsFrom configurations.default
+    }
+}
+
+/**
+ * pack sources jar
+ */
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+/**
+ * add sources.jar to artifacts
+ */
+artifacts {
+    archives androidSourcesJar
+}

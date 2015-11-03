@@ -6,6 +6,8 @@
 
 package net.doo.maps.baidu;
 
+import android.util.Log;
+
 import com.baidu.mapapi.map.MapPoi;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapView;
@@ -16,7 +18,6 @@ import net.doo.maps.CameraUpdate;
 import net.doo.maps.Projection;
 import net.doo.maps.UiSettings;
 import net.doo.maps.baidu.model.BaiduCameraUpdate;
-import net.doo.maps.baidu.model.BaiduProjection;
 import net.doo.maps.baidu.model.BaiduToModelConverter;
 import net.doo.maps.baidu.model.ModelToBaiduConverter;
 import net.doo.maps.baidu.model.overlay.BaiduPolygon;
@@ -24,14 +25,12 @@ import net.doo.maps.model.CameraPosition;
 import net.doo.maps.model.Circle;
 import net.doo.maps.model.CircleOptions;
 import net.doo.maps.model.LatLng;
-import net.doo.maps.model.LatLngBounds;
 import net.doo.maps.model.Marker;
 import net.doo.maps.model.MarkerOptions;
 import net.doo.maps.model.Polygon;
 import net.doo.maps.model.PolygonOptions;
 import net.doo.maps.model.Polyline;
 import net.doo.maps.model.PolylineOptions;
-import net.doo.maps.model.VisibleRegion;
 
 /**
  * Implementation of {@link AnyMap} which works with Open Street Maps
@@ -81,14 +80,7 @@ public class BaiduMap implements AnyMap {
 
 	@Override
 	public Projection getProjection() {
-		return new BaiduProjection(
-				new VisibleRegion(
-						new LatLngBounds(
-								BaiduToModelConverter.convert(map.getMapStatus().bound.southwest),
-								BaiduToModelConverter.convert(map.getMapStatus().bound.northeast)
-						)
-				)
-		);
+		return BaiduToModelConverter.convert(map.getMapStatus().bound);
 	}
 
 	@Override
@@ -148,7 +140,7 @@ public class BaiduMap implements AnyMap {
 		map.setOnMapClickListener(new com.baidu.mapapi.map.BaiduMap.OnMapClickListener() {
 			@Override
 			public void onMapClick(com.baidu.mapapi.model.LatLng latLng) {
-				listener.onMapClick(convert(latLng));
+				listener.onMapClick(BaiduToModelConverter.convert(latLng));
 			}
 
 			@Override
@@ -163,13 +155,9 @@ public class BaiduMap implements AnyMap {
 		map.setOnMapLongClickListener(new com.baidu.mapapi.map.BaiduMap.OnMapLongClickListener() {
 			@Override
 			public void onMapLongClick(com.baidu.mapapi.model.LatLng latLng) {
-				listener.onMapLongClick(convert(latLng));
+				listener.onMapLongClick(BaiduToModelConverter.convert(latLng));
 			}
 		});
-	}
-
-	private LatLng convert(com.baidu.mapapi.model.LatLng latLng) {
-		return new LatLng(latLng.latitude, latLng.longitude);
 	}
 
 	@Override
@@ -225,9 +213,10 @@ public class BaiduMap implements AnyMap {
 				map.setMapType(com.baidu.mapapi.map.BaiduMap.MAP_TYPE_SATELLITE);
 				break;
 			case NORMAL:
-			default:
 				map.setMapType(com.baidu.mapapi.map.BaiduMap.MAP_TYPE_NORMAL);
 				break;
+			default:
+				Log.d(BaiduMap.class.getSimpleName(), "Could not set unknown MapType " + type);
 		}
 	}
 

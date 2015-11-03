@@ -12,12 +12,15 @@ import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.Polygon;
 import com.baidu.mapapi.map.Polyline;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.model.LatLngBounds;
 
+import net.doo.maps.Projection;
 import net.doo.maps.baidu.model.overlay.BaiduCircle;
 import net.doo.maps.baidu.model.overlay.BaiduMarker;
 import net.doo.maps.baidu.model.overlay.BaiduPolygon;
 import net.doo.maps.baidu.model.overlay.BaiduPolyline;
 import net.doo.maps.model.CameraPosition;
+import net.doo.maps.model.VisibleRegion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,5 +65,16 @@ public final class BaiduToModelConverter {
 
 	public static net.doo.maps.model.LatLng convert(LatLng point) {
 		return new net.doo.maps.model.LatLng(point.latitude, point.longitude);
+	}
+
+	public static Projection convert(LatLngBounds bound) {
+		return new BaiduProjection(
+				new VisibleRegion(
+						new net.doo.maps.model.LatLngBounds(
+								BaiduToModelConverter.convert(bound.southwest),
+								BaiduToModelConverter.convert(bound.northeast)
+						)
+				)
+		);
 	}
 }

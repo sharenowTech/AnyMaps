@@ -20,15 +20,15 @@ public class RectGeofence implements Geofence {
 
     @Override
     public boolean contains(LatLng latLng) {
-        double x = latLng.longitude;
-        double y = latLng.latitude;
+        double longitude = latLng.longitude;
+        double latitude = latLng.latitude;
 
-        double minX = northWest.longitude;
-        double maxX = southEast.longitude;
+        double leftBorder = northWest.longitude;
+        double rightBorder = southEast.longitude;
 
-        double minY = southEast.latitude;
-        double maxY = northWest.latitude;
+        double bottomBorder = southEast.latitude;
+        double topBorder = northWest.latitude;
 
-        return latLng.latitude >= minY && y <= maxY && x >= minX && x <= maxX;
+        return latitude >= bottomBorder && latitude <= topBorder && longitude >= leftBorder && longitude <= rightBorder;
     }
 }

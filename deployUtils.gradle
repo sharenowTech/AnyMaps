@@ -1,3 +1,5 @@
+apply plugin: 'maven'
+apply plugin: 'com.android.library'
 project.ext.commonPomSetUp = { MavenPom pom ->
     pom.project {
         packaging 'aar'
@@ -16,7 +18,6 @@ configurations {
         extendsFrom configurations.default
     }
 }
-
 /**
  * pack sources jar
  */
@@ -24,7 +25,6 @@ task androidSourcesJar(type: Jar) {
     classifier = 'sources'
     from android.sourceSets.main.java.srcDirs
 }
-
 /**
  * add sources.jar to artifacts
  */

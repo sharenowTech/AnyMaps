@@ -71,4 +71,6 @@ android {
 }
 dependencies {
     compile 'com.android.support:support-annotations:23.1.0'
+
+    testCompile 'junit:junit:4.11'
 }

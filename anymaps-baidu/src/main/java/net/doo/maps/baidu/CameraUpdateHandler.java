@@ -6,79 +6,54 @@
 
 package net.doo.maps.baidu;
 
-import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdate;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
 
-import net.doo.maps.AnyMap;
 import net.doo.maps.CameraUpdate;
+import net.doo.maps.baidu.overlay.Converter;
+import net.doo.maps.model.CameraPosition;
+import net.doo.maps.model.LatLng;
 
 /**
  * Handles incoming {@link CameraUpdate} events
  */
 class CameraUpdateHandler {
 
-	private final MapView map;
+	private final BaiduMap map;
 
-	public CameraUpdateHandler(MapView map) {
+	public CameraUpdateHandler(com.baidu.mapapi.map.BaiduMap map) {
 		this.map = map;
 	}
 
-	/**
-	 * @see AnyMap#moveCamera(CameraUpdate)
-	 */
-	public void moveCamera(CameraUpdate cameraUpdate) {
-//		final OsmCameraUpdate osmCameraUpdate = (OsmCameraUpdate) cameraUpdate;
+	public void animateMapStatus(BaiduCameraUpdate baiduCameraUpdate, boolean animate, Integer duration) {
+		MapStatusUpdate mapStatusUpdate;
+		if (baiduCameraUpdate.bounds != null) {
+			mapStatusUpdate = MapStatusUpdateFactory.newLatLngBounds(Converter.convert(baiduCameraUpdate.bounds));
+		} else if (baiduCameraUpdate.center == null) {
+			throw new IllegalArgumentException("We either need a center to zoom to or some bounds");
+		} else if (baiduCameraUpdate.zoom != null) {
+			mapStatusUpdate = MapStatusUpdateFactory.newLatLngZoom(Converter.convert(baiduCameraUpdate.center), baiduCameraUpdate.zoom);
+		} else {
+			mapStatusUpdate = MapStatusUpdateFactory.newLatLng(Converter.convert(baiduCameraUpdate.center));
+		}
 
-//		final IMapController controller = map.getController();
-
-//		if (osmCameraUpdate.bounds != null) {
-//			final LatLng center = osmCameraUpdate.bounds.getCenter();
-//
-//			controller.setCenter(
-//					toGeoPoint(center)
-//			);
-//
-//			controller.zoomToSpan(
-//					(int) ((osmCameraUpdate.bounds.northeast.latitude - osmCameraUpdate.bounds.southwest.latitude) * 1e6),
-//					(int) ((osmCameraUpdate.bounds.northeast.longitude - osmCameraUpdate.bounds.southwest.longitude) * 1e6)
-//			);
-//
-//			return;
-//		}
-//
-//		if (osmCameraUpdate.zoom != null) {
-//			controller.setZoom(osmCameraUpdate.zoom.intValue());
-//		}
-//
-//		if (osmCameraUpdate.center != null) {
-//			controller.setCenter(
-//					toGeoPoint(osmCameraUpdate.center)
-//			);
-//		}
+		if (!animate) {
+			map.setMapStatus(mapStatusUpdate);
+		} else if (duration == null) {
+			map.animateMapStatus(mapStatusUpdate);
+		} else {
+			map.animateMapStatus(mapStatusUpdate, duration);
+		}
 	}
 
-	/**
-	 * @see AnyMap#animateCamera(CameraUpdate)
-	 */
-	public void animateCamera(CameraUpdate cameraUpdate) {
-		moveCamera(cameraUpdate);
+	public CameraPosition currentCameraPosition() {
+		MapStatus mapStatus = map.getMapStatus();
+
+		return new CameraPosition(
+				new LatLng(mapStatus.target.latitude, mapStatus.target.longitude),
+				mapStatus.zoom
+		);
 	}
-
-	/**
-	 * @see AnyMap#animateCamera(CameraUpdate, AnyMap.CancelableCallback)
-	 */
-	public void animateCamera(CameraUpdate cameraUpdate, AnyMap.CancelableCallback callback) {
-		moveCamera(cameraUpdate);
-
-		callback.onFinish();
-	}
-
-	/**
-	 * @see AnyMap#animateCamera(CameraUpdate, int, AnyMap.CancelableCallback)
-	 */
-	public void animateCamera(CameraUpdate cameraUpdate, int duration, AnyMap.CancelableCallback callback) {
-		moveCamera(cameraUpdate);
-
-		callback.onFinish();
-	}
-
 }

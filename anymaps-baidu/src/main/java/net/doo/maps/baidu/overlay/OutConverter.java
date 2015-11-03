@@ -6,7 +6,6 @@
 
 package net.doo.maps.baidu.overlay;
 
-import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.Circle;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.Marker;
@@ -42,11 +41,6 @@ public final class OutConverter {
 		return new BaiduPolyline(polyline);
 	}
 
-
-	public static net.doo.maps.model.Polygon convertToPolygon(BaiduMap map, Polyline polyline) {
-		return new BaiduPseudoPolygon(map, polyline);
-	}
-
 	public static BaiduPolygon convert(Polygon polygon) {
 		return new BaiduPolygon(polygon);
 	}
@@ -60,7 +54,6 @@ public final class OutConverter {
 	}
 
 	public static net.doo.maps.model.LatLng convert(LatLng point) {
-		//		return new net.doo.maps.model.LatLng(point.latitude + 13.642673, point.longitude - 106.421046);
 		return new net.doo.maps.model.LatLng(point.latitude, point.longitude);
 	}
 }

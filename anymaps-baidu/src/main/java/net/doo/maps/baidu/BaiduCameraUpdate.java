@@ -39,13 +39,6 @@ public class BaiduCameraUpdate implements CameraUpdate {
 		public Builder() {
 		}
 
-		public Builder(BaiduCameraUpdate copy) {
-			this.center = copy.center;
-			this.zoom = copy.zoom;
-			this.bounds = copy.bounds;
-			this.padding = copy.padding;
-		}
-
 		/**
 		 * Assigns new center of the camera. Can't be used together with {@link #bounds}
 		 *

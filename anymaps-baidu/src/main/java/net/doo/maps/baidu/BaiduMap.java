@@ -8,8 +8,6 @@ package net.doo.maps.baidu;
 
 import com.baidu.mapapi.map.MapPoi;
 import com.baidu.mapapi.map.MapStatus;
-import com.baidu.mapapi.map.MapStatusUpdate;
-import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationData;
 
@@ -17,6 +15,9 @@ import net.doo.maps.AnyMap;
 import net.doo.maps.CameraUpdate;
 import net.doo.maps.Projection;
 import net.doo.maps.UiSettings;
+import net.doo.maps.baidu.overlay.BaiduPolygon;
+import net.doo.maps.baidu.overlay.Converter;
+import net.doo.maps.baidu.overlay.OutConverter;
 import net.doo.maps.model.CameraPosition;
 import net.doo.maps.model.Circle;
 import net.doo.maps.model.CircleOptions;
@@ -29,9 +30,6 @@ import net.doo.maps.model.PolygonOptions;
 import net.doo.maps.model.Polyline;
 import net.doo.maps.model.PolylineOptions;
 import net.doo.maps.model.VisibleRegion;
-import net.doo.maps.baidu.overlay.BaiduPolygon;
-import net.doo.maps.baidu.overlay.Converter;
-import net.doo.maps.baidu.overlay.OutConverter;
 
 /**
  * Implementation of {@link AnyMap} which works with Open Street Maps
@@ -40,6 +38,7 @@ public class BaiduMap implements AnyMap {
 
 	private final MapView mapView;
 	private final com.baidu.mapapi.map.BaiduMap map;
+	private final CameraUpdateHandler cameraUpdateHandler;
 
 	BaiduMap(MapView mapView) {
 		this.mapView = mapView;
@@ -47,54 +46,35 @@ public class BaiduMap implements AnyMap {
 		map = mapView.getMap();
 		map.getUiSettings().setCompassEnabled(false);
 		map.getUiSettings().setRotateGesturesEnabled(false);
+
+		cameraUpdateHandler = new CameraUpdateHandler(map);
 	}
 
 	@Override
 	public void moveCamera(CameraUpdate cameraUpdate) {
-		animateMapStatus((BaiduCameraUpdate) cameraUpdate, false, null);
+		cameraUpdateHandler.animateMapStatus((BaiduCameraUpdate) cameraUpdate, false, null);
 	}
 
 	@Override
 	public void animateCamera(CameraUpdate cameraUpdate) {
-		animateMapStatus((BaiduCameraUpdate) cameraUpdate, true, null);
+		cameraUpdateHandler.animateMapStatus((BaiduCameraUpdate) cameraUpdate, true, null);
 	}
 
 	@Override
 	public void animateCamera(CameraUpdate cameraUpdate, CancelableCallback callback) {
-		animateMapStatus((BaiduCameraUpdate) cameraUpdate, true, null);
+		cameraUpdateHandler.animateMapStatus((BaiduCameraUpdate) cameraUpdate, true, null);
 		callback.onFinish();
 	}
 
 	@Override
 	public void animateCamera(CameraUpdate cameraUpdate, int duration, CancelableCallback callback) {
-		animateMapStatus((BaiduCameraUpdate) cameraUpdate, true, duration);
+		cameraUpdateHandler.animateMapStatus((BaiduCameraUpdate) cameraUpdate, true, duration);
 		callback.onFinish();
-	}
-
-	private void animateMapStatus(BaiduCameraUpdate baiduCameraUpdate, boolean animate, Integer duration) {
-		MapStatusUpdate mapStatusUpdate;
-		if (baiduCameraUpdate.bounds != null) {
-			mapStatusUpdate = MapStatusUpdateFactory.newLatLngBounds(Converter.convert(baiduCameraUpdate.bounds));
-		} else if (baiduCameraUpdate.center == null) {
-			throw new IllegalArgumentException("We either need a center to zoom to or some bounds");
-		} else if (baiduCameraUpdate.zoom != null) {
-			mapStatusUpdate = MapStatusUpdateFactory.newLatLngZoom(Converter.convert(baiduCameraUpdate.center), baiduCameraUpdate.zoom);
-		} else {
-			mapStatusUpdate = MapStatusUpdateFactory.newLatLng(Converter.convert(baiduCameraUpdate.center));
-		}
-
-		if (!animate) {
-			map.setMapStatus(mapStatusUpdate);
-		} else if (duration == null) {
-			map.animateMapStatus(mapStatusUpdate);
-		} else {
-			map.animateMapStatus(mapStatusUpdate, duration);
-		}
 	}
 
 	@Override
 	public CameraPosition getCameraPosition() {
-		return currentCameraPosition();
+		return cameraUpdateHandler.currentCameraPosition();
 	}
 
 	@Override
@@ -259,15 +239,6 @@ public class BaiduMap implements AnyMap {
 	 */
 	MapView getNativeMapView() {
 		return mapView;
-	}
-
-	private CameraPosition currentCameraPosition() {
-		MapStatus mapStatus = map.getMapStatus();
-
-		return new CameraPosition(
-				new LatLng(mapStatus.target.latitude, mapStatus.target.longitude),
-				mapStatus.zoom
-		);
 	}
 
 	@Override

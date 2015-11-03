@@ -13,11 +13,13 @@ import com.baidu.mapapi.map.Stroke;
 import net.doo.maps.model.LatLng;
 import net.doo.maps.model.Polygon;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BaiduPolygon implements Polygon {
 
 	private com.baidu.mapapi.map.Polygon polygon;
+	private List<com.baidu.mapapi.map.Polygon> holePolygons = new ArrayList<>();
 	private BaiduMap map;
 
 	public BaiduPolygon(com.baidu.mapapi.map.Polygon polygon) {
@@ -30,11 +32,13 @@ public class BaiduPolygon implements Polygon {
 
 	@Override
 	public void setHoles(List<List<LatLng>> holes) {
+		holePolygons.clear();
 		for (List<LatLng> hole : holes) {
-			com.baidu.mapapi.map.Overlay polygon = map.addOverlay(new PolygonOptions()
+			com.baidu.mapapi.map.Polygon polygon = (com.baidu.mapapi.map.Polygon) map.addOverlay(new PolygonOptions()
 					.fillColor(0x4499FF99)
 					.points(Converter.convert(hole))
 					.stroke(new Stroke(8, 0xa600aff8)));
+			holePolygons.add(polygon);
 		}
 	}
 
@@ -45,6 +49,17 @@ public class BaiduPolygon implements Polygon {
 
 	@Override
 	public void setVisible(final boolean visible) {
+		setVisisbleIfNeeded(polygon, visible);
+
+		for (com.baidu.mapapi.map.Polygon hole : holePolygons) {
+			setVisisbleIfNeeded(hole, visible);
+		}
+	}
+
+	private void setVisisbleIfNeeded(com.baidu.mapapi.map.Polygon polygon, boolean visible) {
+		if (polygon == null) {
+			return;
+		}
 		if (polygon.isVisible() != visible) {
 			polygon.setVisible(visible);
 		}
@@ -52,7 +67,13 @@ public class BaiduPolygon implements Polygon {
 
 	@Override
 	public void remove() {
-		polygon.remove();
+		if (polygon != null) {
+			polygon.remove();
+		}
+
+		for (com.baidu.mapapi.map.Polygon hole : holePolygons) {
+			hole.remove();
+		}
 	}
 
 	@Override

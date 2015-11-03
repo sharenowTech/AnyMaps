@@ -31,7 +31,6 @@ public final class Converter {
 		if (position == null) {
 			return null;
 		}
-//		return new com.baidu.mapapi.model.LatLng(position.latitude - 13.642673, position.longitude + 106.421046);
 		return new com.baidu.mapapi.model.LatLng(position.latitude, position.longitude);
 	}
 

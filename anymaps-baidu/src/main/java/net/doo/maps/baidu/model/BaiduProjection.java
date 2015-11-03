@@ -4,7 +4,7 @@
  * All rights reserved
  */
 
-package net.doo.maps.baidu;
+package net.doo.maps.baidu.model;
 
 import net.doo.maps.Projection;
 import net.doo.maps.model.VisibleRegion;

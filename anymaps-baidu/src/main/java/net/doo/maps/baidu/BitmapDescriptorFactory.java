@@ -8,6 +8,7 @@ package net.doo.maps.baidu;
 
 import android.graphics.Bitmap;
 
+import net.doo.maps.baidu.model.BaiduBitmapDescriptor;
 import net.doo.maps.model.BitmapDescriptor;
 
 /**

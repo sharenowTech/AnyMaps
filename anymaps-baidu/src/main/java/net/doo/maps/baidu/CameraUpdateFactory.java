@@ -7,6 +7,7 @@
 package net.doo.maps.baidu;
 
 import net.doo.maps.CameraUpdate;
+import net.doo.maps.baidu.model.BaiduCameraUpdate;
 import net.doo.maps.model.LatLng;
 import net.doo.maps.model.LatLngBounds;
 

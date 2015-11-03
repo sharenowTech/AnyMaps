@@ -4,12 +4,12 @@
  * All rights reserved
  */
 
-package net.doo.maps.baidu;
+package net.doo.maps.baidu.model;
 
 import net.doo.maps.model.BitmapDescriptor;
 
 /**
- * Created by c.dehning on 01/09/15.
+ * @see net.doo.maps.model.BitmapDescriptor
  */
 public class BaiduBitmapDescriptor implements BitmapDescriptor {
 	public final com.baidu.mapapi.map.BitmapDescriptor wrappedDescriptor;

@@ -4,7 +4,7 @@
  * All rights reserved
  */
 
-package net.doo.maps.baidu;
+package net.doo.maps.baidu.model;
 
 import net.doo.maps.CameraUpdate;
 import net.doo.maps.model.LatLng;

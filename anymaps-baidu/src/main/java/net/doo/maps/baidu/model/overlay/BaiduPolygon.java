@@ -4,12 +4,14 @@
  * All rights reserved
  */
 
-package net.doo.maps.baidu.overlay;
+package net.doo.maps.baidu.model.overlay;
 
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.PolygonOptions;
 import com.baidu.mapapi.map.Stroke;
 
+import net.doo.maps.baidu.model.BaiduToModelConverter;
+import net.doo.maps.baidu.model.ModelToBaiduConverter;
 import net.doo.maps.model.LatLng;
 import net.doo.maps.model.Polygon;
 
@@ -36,7 +38,7 @@ public class BaiduPolygon implements Polygon {
 		for (List<LatLng> hole : holes) {
 			com.baidu.mapapi.map.Polygon polygon = (com.baidu.mapapi.map.Polygon) map.addOverlay(new PolygonOptions()
 					.fillColor(0x4499FF99)
-					.points(Converter.convert(hole))
+					.points(ModelToBaiduConverter.convert(hole))
 					.stroke(new Stroke(8, 0xa600aff8)));
 			holePolygons.add(polygon);
 		}
@@ -44,7 +46,7 @@ public class BaiduPolygon implements Polygon {
 
 	@Override
 	public List<LatLng> getPoints() {
-		return OutConverter.convert(polygon.getPoints());
+		return BaiduToModelConverter.convert(polygon.getPoints());
 	}
 
 	@Override

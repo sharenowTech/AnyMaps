@@ -4,8 +4,10 @@
  * All rights reserved
  */
 
-package net.doo.maps.baidu.overlay;
+package net.doo.maps.baidu.model.overlay;
 
+import net.doo.maps.baidu.model.BaiduToModelConverter;
+import net.doo.maps.baidu.model.ModelToBaiduConverter;
 import net.doo.maps.model.BitmapDescriptor;
 import net.doo.maps.model.LatLng;
 import net.doo.maps.model.Marker;
@@ -27,12 +29,12 @@ public class BaiduMarker implements Marker {
 
 	@Override
 	public void setIcon(BitmapDescriptor icon) {
-		marker.setIcon(Converter.convert(icon));
+		marker.setIcon(ModelToBaiduConverter.convert(icon));
 	}
 
 	@Override
 	public LatLng getPosition() {
-		return OutConverter.convert(marker.getPosition());
+		return BaiduToModelConverter.convert(marker.getPosition());
 	}
 
 	@Override

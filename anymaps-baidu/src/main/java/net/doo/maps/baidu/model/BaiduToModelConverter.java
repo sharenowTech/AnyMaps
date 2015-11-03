@@ -4,7 +4,7 @@
  * All rights reserved
  */
 
-package net.doo.maps.baidu.overlay;
+package net.doo.maps.baidu.model;
 
 import com.baidu.mapapi.map.Circle;
 import com.baidu.mapapi.map.MapStatus;
@@ -13,15 +13,22 @@ import com.baidu.mapapi.map.Polygon;
 import com.baidu.mapapi.map.Polyline;
 import com.baidu.mapapi.model.LatLng;
 
+import net.doo.maps.baidu.model.overlay.BaiduCircle;
+import net.doo.maps.baidu.model.overlay.BaiduMarker;
+import net.doo.maps.baidu.model.overlay.BaiduPolygon;
+import net.doo.maps.baidu.model.overlay.BaiduPolyline;
 import net.doo.maps.model.CameraPosition;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public final class OutConverter {
+/**
+ * Converts Baidu objects to model objects.
+ */
+public final class BaiduToModelConverter {
 
-	private OutConverter() {
+	private BaiduToModelConverter() {
 
 	}
 

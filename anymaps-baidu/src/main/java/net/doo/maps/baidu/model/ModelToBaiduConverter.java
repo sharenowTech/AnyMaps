@@ -4,12 +4,11 @@
  * All rights reserved
  */
 
-package net.doo.maps.baidu.overlay;
+package net.doo.maps.baidu.model;
 
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.Stroke;
 
-import net.doo.maps.baidu.BaiduBitmapDescriptor;
 import net.doo.maps.model.BitmapDescriptor;
 import net.doo.maps.model.CircleOptions;
 import net.doo.maps.model.LatLng;
@@ -21,9 +20,12 @@ import net.doo.maps.model.PolylineOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Converter {
+/**
+ * Converts model objects to baidu objects.
+ */
+public final class ModelToBaiduConverter {
 
-	private Converter() {
+	private ModelToBaiduConverter() {
 
 	}
 
@@ -37,7 +39,7 @@ public final class Converter {
 	public static OverlayOptions convert(MarkerOptions options) {
 		return new com.baidu.mapapi.map.MarkerOptions()
 				.icon(convert(options.getIcon()))
-				.position(Converter.convert(options.getPosition()))
+				.position(ModelToBaiduConverter.convert(options.getPosition()))
 				.anchor(options.getAnchorU(), options.getAnchorV())
 				.visible(options.isVisible());
 	}

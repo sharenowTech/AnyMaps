@@ -4,7 +4,7 @@
  * All rights reserved
  */
 
-package net.doo.maps.baidu.overlay;
+package net.doo.maps.baidu.model.overlay;
 
 import net.doo.maps.model.Circle;
 

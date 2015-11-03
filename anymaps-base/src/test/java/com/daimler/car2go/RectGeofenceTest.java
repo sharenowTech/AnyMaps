@@ -3,9 +3,7 @@ package com.daimler.car2go;
 import net.doo.maps.model.LatLng;
 import net.doo.maps.model.RectGeofence;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
@@ -17,9 +15,6 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(JUnit4.class)
 public class RectGeofenceTest {
-
-    @Rule
-    public final ExpectedException exception = ExpectedException.none();
 
     private RectGeofence createFence() {
         return new RectGeofence(new LatLng(1, -1), new LatLng(-1, 1));
@@ -42,15 +37,13 @@ public class RectGeofenceTest {
         assertFalse(createFence().contains(new LatLng(0, -1.001)));
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testWrongRectEastWest() throws Exception {
-        exception.expect(IllegalArgumentException.class);
         new RectGeofence(new LatLng(1, 1), new LatLng(-1, -1));
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testWrongRectNorthSouth() throws Exception {
-        exception.expect(IllegalArgumentException.class);
         new RectGeofence(new LatLng(-1, -1), new LatLng(1, 1));
     }
 }

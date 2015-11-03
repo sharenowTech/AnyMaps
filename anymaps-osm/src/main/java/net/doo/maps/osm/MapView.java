@@ -17,11 +17,8 @@ import net.doo.maps.OnMapReadyCallback;
 
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 
-import java.util.Collections;
-import java.util.Set;
-
 /**
- * @see net.doo.maps.MapPresenter
+ * @see net.doo.maps.MapContainerView
  */
 public class MapView extends MapContainerView {
 

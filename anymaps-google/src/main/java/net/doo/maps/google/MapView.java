@@ -20,7 +20,7 @@ import net.doo.maps.OnMapReadyCallback;
 import net.doo.maps.google.adapter.GoogleMapAdapter;
 
 /**
- * @see net.doo.maps.MapPresenter
+ * @see net.doo.maps.MapContainerView
  */
 public class MapView extends MapContainerView {
 

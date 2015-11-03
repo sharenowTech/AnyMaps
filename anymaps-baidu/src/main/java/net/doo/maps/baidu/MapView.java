@@ -17,7 +17,7 @@ import net.doo.maps.OnMapReadyCallback;
 
 
 /**
- * @see net.doo.maps.MapPresenter
+ * @see net.doo.maps.MapContainerView
  */
 public class MapView extends MapContainerView {
 

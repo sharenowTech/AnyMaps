@@ -20,7 +20,7 @@ import static java.util.EnumSet.of;
 /**
  * Initializer for Baidu maps.
  */
-public class MapsUtil implements net.doo.maps.MapsUtil {
+public class MapsConfiguration implements net.doo.maps.MapsConfiguration {
 
 	@Override
 	public void initialize(Context context) {

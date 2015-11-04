@@ -10,8 +10,11 @@ import android.content.Context;
 
 import java.util.Set;
 
-// TODO Rename it
-public interface MapsUtil {
+/**
+ * A util class for initializing the map and retrieving its capabilities.
+ */
+public interface MapsConfiguration {
+
 	/**
 	 * Initializes the maps.
 	 *

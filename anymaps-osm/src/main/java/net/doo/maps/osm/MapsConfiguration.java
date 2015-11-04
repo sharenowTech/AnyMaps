@@ -16,7 +16,7 @@ import java.util.Set;
 /**
  * Initializer for OSM maps.
  */
-public final class MapsUtil implements net.doo.maps.MapsUtil {
+public final class MapsConfiguration implements net.doo.maps.MapsConfiguration {
 
 	@Override
 	public void initialize(Context context) {

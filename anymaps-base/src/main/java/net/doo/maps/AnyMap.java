@@ -26,140 +26,140 @@ import net.doo.maps.model.PolylineOptions;
  */
 public interface AnyMap {
 
-    void moveCamera(CameraUpdate cameraUpdate);
+	void moveCamera(CameraUpdate cameraUpdate);
 
-    void animateCamera(CameraUpdate cameraUpdate);
+	void animateCamera(CameraUpdate cameraUpdate);
 
-    void animateCamera(CameraUpdate cameraUpdate, CancelableCallback callback);
+	void animateCamera(CameraUpdate cameraUpdate, CancelableCallback callback);
 
-    void animateCamera(CameraUpdate cameraUpdate, int duration, CancelableCallback callback);
+	void animateCamera(CameraUpdate cameraUpdate, int duration, CancelableCallback callback);
 
-    CameraPosition getCameraPosition();
+	CameraPosition getCameraPosition();
 
-    Projection getProjection();
+	Projection getProjection();
 
-    Marker addMarker(MarkerOptions options);
+	Marker addMarker(MarkerOptions options);
 
-    Circle addCircle(CircleOptions options);
+	Circle addCircle(CircleOptions options);
 
-    Polygon addPolygon(PolygonOptions options);
+	Polygon addPolygon(PolygonOptions options);
 
-    Polyline addPolyline(PolylineOptions options);
+	Polyline addPolyline(PolylineOptions options);
 
-    UiSettings getUiSettings();
+	UiSettings getUiSettings();
 
-    void setOnMapClickListener(OnMapClickListener listener);
+	void setOnMapClickListener(OnMapClickListener listener);
 
-    void setOnMapLongClickListener(OnMapLongClickListener listener);
+	void setOnMapLongClickListener(OnMapLongClickListener listener);
 
-    void setOnCameraChangeListener(OnCameraChangeListener listener);
+	void setOnCameraChangeListener(OnCameraChangeListener listener);
 
-    void setOnMarkerClickListener(OnMarkerClickListener listener);
+	void setOnMarkerClickListener(OnMarkerClickListener listener);
 
-    void setInfoWindowAdapter(InfoWindowAdapter adapter);
+	void setInfoWindowAdapter(InfoWindowAdapter adapter);
 
-    void setTrafficEnabled(boolean enabled);
+	void setTrafficEnabled(boolean enabled);
 
-    void setMyLocationEnabled(boolean enabled);
+	void setMyLocationEnabled(boolean enabled);
 
-    void setMapType(Type type);
+	void setMapType(Type type);
 
-    void setPadding(int left, int top, int right, int bottom);
+	void setPadding(int left, int top, int right, int bottom);
 
-    void onUserLocationChanged(LatLng location, float accuracy);
+	void onUserLocationChanged(LatLng location, float accuracy);
 
 
-    enum Type {
+	enum Type {
 
-        NORMAL,
-        SATELLITE
+		NORMAL,
+		SATELLITE
 
-    }
+	}
 
-    /**
-     * Special capability of {@link AnyMap} which might be supported or not supported
-     * by each particular implementation.
-     */
-    enum Capability {
+	/**
+	 * Features of {@link AnyMap} which might be supported or not supported
+	 * by each particular implementation.
+	 */
+	enum Configuration {
 
-        /**
-         * Displaying layer with traffic jams on the map
-         */
-        TRAFFIC_LAYER,
+		/**
+		 * Displaying layer with traffic jams on the map
+		 */
+		TRAFFIC_LAYER,
 
-        /**
-         * Supporting several {@link net.doo.maps.AnyMap.Type}. If this capability is not present,
-         * only one of types is implemented (which one - is not specified).
-         */
-        MAP_TYPES,
+		/**
+		 * Supporting several {@link net.doo.maps.AnyMap.Type}. If this capability is not present,
+		 * only one of types is implemented (which one - is not specified).
+		 */
+		MAP_TYPES,
 
-        /**
-         * Supports being invisible at first and being revealed (or simply made visible) later on.
-         */
-        REVEALABLE
+		/**
+		 * Supports being invisible at first and being revealed (or simply made visible) later on.
+		 */
+		REVEALABLE
 
-    }
+	}
 
-    interface OnMapClickListener {
+	interface OnMapClickListener {
 
-        OnMapClickListener NULL = new OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-                // Do nothing
-            }
-        };
+		OnMapClickListener NULL = new OnMapClickListener() {
+			@Override
+			public void onMapClick(LatLng latLng) {
+				// Do nothing
+			}
+		};
 
-        void onMapClick(LatLng latLng);
+		void onMapClick(LatLng latLng);
 
-    }
+	}
 
-    interface OnMapLongClickListener {
+	interface OnMapLongClickListener {
 
-        OnMapLongClickListener NULL = new OnMapLongClickListener() {
-            @Override
-            public void onMapLongClick(LatLng latLng) {
-                // Do nothing
-            }
-        };
+		OnMapLongClickListener NULL = new OnMapLongClickListener() {
+			@Override
+			public void onMapLongClick(LatLng latLng) {
+				// Do nothing
+			}
+		};
 
-        void onMapLongClick(LatLng latLng);
+		void onMapLongClick(LatLng latLng);
 
-    }
+	}
 
-    interface OnCameraChangeListener {
+	interface OnCameraChangeListener {
 
-        void onCameraChange(CameraPosition cameraPosition);
+		void onCameraChange(CameraPosition cameraPosition);
 
-    }
+	}
 
-    interface OnMarkerClickListener {
+	interface OnMarkerClickListener {
 
-        OnMarkerClickListener NULL = new OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                // Do nothing
-                return false;
-            }
-        };
+		OnMarkerClickListener NULL = new OnMarkerClickListener() {
+			@Override
+			public boolean onMarkerClick(Marker marker) {
+				// Do nothing
+				return false;
+			}
+		};
 
-        boolean onMarkerClick(Marker marker);
+		boolean onMarkerClick(Marker marker);
 
-    }
+	}
 
-    interface CancelableCallback {
+	interface CancelableCallback {
 
-        void onFinish();
+		void onFinish();
 
-        void onCancel();
+		void onCancel();
 
-    }
+	}
 
-    interface InfoWindowAdapter {
+	interface InfoWindowAdapter {
 
-        View getInfoWindow(Marker marker);
+		View getInfoWindow(Marker marker);
 
-        View getInfoContents(Marker marker);
+		View getInfoContents(Marker marker);
 
-    }
+	}
 
 }

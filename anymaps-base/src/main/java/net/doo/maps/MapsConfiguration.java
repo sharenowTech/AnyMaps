@@ -28,5 +28,5 @@ public interface MapsConfiguration {
 	 *
 	 * @return capabilities of the {@link AnyMap} implementation.
 	 */
-	Set<AnyMap.Capability> getCapabilities();
+	Set<AnyMap.Configuration> getConfigurations();
 }

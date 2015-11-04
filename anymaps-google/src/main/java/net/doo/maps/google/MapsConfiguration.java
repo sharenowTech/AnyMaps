@@ -26,8 +26,8 @@ public class MapsConfiguration implements net.doo.maps.MapsConfiguration {
 	}
 
 	@Override
-	public Set<AnyMap.Capability> getCapabilities() {
-		return unmodifiableSet(of(AnyMap.Capability.MAP_TYPES, AnyMap.Capability.TRAFFIC_LAYER, AnyMap.Capability.REVEALABLE));
+	public Set<AnyMap.Configuration> getConfigurations() {
+		return unmodifiableSet(of(AnyMap.Configuration.MAP_TYPES, AnyMap.Configuration.TRAFFIC_LAYER, AnyMap.Configuration.REVEALABLE));
 	}
 
 

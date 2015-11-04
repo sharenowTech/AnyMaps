@@ -24,7 +24,7 @@ import net.doo.maps.google.adapter.GoogleMapAdapter;
  */
 public class MapView extends MapContainerView {
 
-	private com.google.android.gms.maps.MapView wrappedMapView;
+	private com.google.android.gms.maps.MapView mapView;
 
 	private AnyMap map;
 
@@ -43,9 +43,9 @@ public class MapView extends MapContainerView {
 	private void initView(Context context, AttributeSet attrs) {
 		GoogleMapOptions googleMapOptions = readOptions(context, attrs);
 
-		wrappedMapView = new com.google.android.gms.maps.MapView(context, googleMapOptions);
+		mapView = new com.google.android.gms.maps.MapView(context, googleMapOptions);
 
-		addView(wrappedMapView);
+		addView(mapView);
 	}
 
 	private GoogleMapOptions readOptions(Context context, AttributeSet attrs) {
@@ -70,7 +70,7 @@ public class MapView extends MapContainerView {
 	@Override
 	public AnyMap getMap() {
 		if (map == null) {
-			map = new GoogleMapAdapter(wrappedMapView.getMap());
+			map = new GoogleMapAdapter(mapView.getMap());
 		}
 
 		return map;
@@ -83,7 +83,7 @@ public class MapView extends MapContainerView {
 			return;
 		}
 
-		wrappedMapView.getMapAsync(new com.google.android.gms.maps.OnMapReadyCallback() {
+		mapView.getMapAsync(new com.google.android.gms.maps.OnMapReadyCallback() {
 			@Override
 			public void onMapReady(GoogleMap googleMap) {
 				if (map == null) {
@@ -97,17 +97,17 @@ public class MapView extends MapContainerView {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		wrappedMapView.onCreate(savedInstanceState);
+		mapView.onCreate(savedInstanceState);
 	}
 
 	@Override
 	public void onResume() {
-		wrappedMapView.onResume();
+		mapView.onResume();
 	}
 
 	@Override
 	public void onPause() {
-		wrappedMapView.onPause();
+		mapView.onPause();
 	}
 
 	@Override
@@ -116,17 +116,17 @@ public class MapView extends MapContainerView {
 			map.setMyLocationEnabled(false);
 		}
 
-		wrappedMapView.onDestroy();
+		mapView.onDestroy();
 	}
 
 	@Override
 	public void onLowMemory() {
-		wrappedMapView.onLowMemory();
+		mapView.onLowMemory();
 	}
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
-		wrappedMapView.onSaveInstanceState(outState);
+		mapView.onSaveInstanceState(outState);
 	}
 
 }

@@ -80,7 +80,7 @@ public interface AnyMap {
 	 * Features of {@link AnyMap} which might be supported or not supported
 	 * by each particular implementation.
 	 */
-	enum Configuration {
+	enum Feature {
 
 		/**
 		 * Displaying layer with traffic jams on the map

@@ -37,7 +37,6 @@ public class MapView extends MapContainerView {
 		com.baidu.mapapi.map.MapView mapView = new com.baidu.mapapi.map.MapView(context, attrs);
 		addView(mapView);
 
-
 		mapView.showZoomControls(false);
 		anyMap = new BaiduMap(mapView);
 

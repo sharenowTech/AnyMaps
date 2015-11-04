@@ -28,6 +28,13 @@ public class CameraUpdateController {
 		this.map = map;
 	}
 
+	/**
+	 * Changes the current map status with the given parameters.
+	 *
+	 * @param baiduCameraUpdate the camera update to perform
+	 * @param animate           set to true, if the change should be animated
+	 * @param duration          the animation duration, may be null to use the default
+	 */
 	public void animateMapStatus(BaiduCameraUpdate baiduCameraUpdate, boolean animate, Integer duration) {
 		MapStatusUpdate mapStatusUpdate;
 		if (baiduCameraUpdate.bounds != null) {
@@ -49,6 +56,11 @@ public class CameraUpdateController {
 		}
 	}
 
+	/**
+	 * Gets the current camera position.
+	 *
+	 * @return the camera position
+	 */
 	public CameraPosition currentCameraPosition() {
 		MapStatus mapStatus = map.getMapStatus();
 

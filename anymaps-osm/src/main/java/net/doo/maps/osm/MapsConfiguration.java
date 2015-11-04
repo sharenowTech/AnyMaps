@@ -24,8 +24,8 @@ public final class MapsConfiguration implements net.doo.maps.MapsConfiguration {
 	}
 
 	@Override
-	public Set<AnyMap.Configuration> getConfigurations() {
-		return Collections.singleton(AnyMap.Configuration.REVEALABLE);
+	public Set<AnyMap.Feature> getSupportedFeatures() {
+		return Collections.singleton(AnyMap.Feature.REVEALABLE);
 	}
 
 }

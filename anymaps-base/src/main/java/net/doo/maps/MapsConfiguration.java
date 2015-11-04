@@ -23,10 +23,10 @@ public interface MapsConfiguration {
 	void initialize(Context context);
 
 	/**
-	 * Provides capabilities of the {@link AnyMap} implementation. If some features are not supported
+	 * Gets the supported features of the {@link AnyMap} implementation. If some features are not supported
 	 * and you will try to call them - nothing will happen.
 	 *
 	 * @return capabilities of the {@link AnyMap} implementation.
 	 */
-	Set<AnyMap.Configuration> getConfigurations();
+	Set<AnyMap.Feature> getSupportedFeatures();
 }

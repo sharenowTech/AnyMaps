@@ -4,8 +4,4 @@
   ~ All rights reserved
   -->
 
-<manifest package="net.doo.maps">
-
-    <application/>
-
-</manifest>
+<manifest package="net.doo.maps"/>

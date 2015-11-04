@@ -42,7 +42,8 @@
     <!--允许应用读取低级别的系统日志文件 -->
     <!--<uses-permission android:name="android.permission.READ_LOGS"></uses-permission>-->
 
-    <application>
+    <application
+        android:allowBackup="false">
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="SN9SoadtpkGjZRoMjoFbcIjm"/>

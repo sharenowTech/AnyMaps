@@ -4,11 +4,11 @@
  * All rights reserved
  */
 
-package net.doo.maps;
+package net.doo.maps.osm;
 
+import net.doo.maps.AnyMap;
 import net.doo.maps.model.LatLng;
 import net.doo.maps.model.LatLngBounds;
-import net.doo.maps.osm.OsmCameraUpdate;
 
 import org.junit.Before;
 import org.junit.Test;

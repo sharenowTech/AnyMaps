@@ -15,6 +15,15 @@ import net.doo.maps.model.LatLngBounds;
  */
 public class CameraUpdateFactory implements net.doo.maps.CameraUpdateFactory {
 
+	private static final CameraUpdateFactory instance = new CameraUpdateFactory();
+
+	private CameraUpdateFactory() {
+	}
+
+	public static CameraUpdateFactory getInstance() {
+		return instance;
+	}
+
 	@Override
 	public CameraUpdate newLatLngZoom(LatLng center, float zoomLevel) {
 		return new OsmCameraUpdate.Builder()

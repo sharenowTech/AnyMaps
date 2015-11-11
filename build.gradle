@@ -2,7 +2,7 @@
 
 project.ext.versionMajor = "3"
 project.ext.versionMinor = "0"
-project.ext.versionPatch = "0"
+project.ext.versionPatch = "1-SNAPSHOT"
 
 buildscript {
     repositories {

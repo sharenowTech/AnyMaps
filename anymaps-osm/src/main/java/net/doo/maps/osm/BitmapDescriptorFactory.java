@@ -19,6 +19,15 @@ public class BitmapDescriptorFactory implements net.doo.maps.BitmapDescriptorFac
 
 	private static Context context;
 
+	private static final BitmapDescriptorFactory instance = new BitmapDescriptorFactory();
+
+	private BitmapDescriptorFactory() {
+	}
+
+	public static BitmapDescriptorFactory getInstance() {
+		return instance;
+	}
+
 	static void initialize(Context context) {
 		BitmapDescriptorFactory.context = context.getApplicationContext();
 	}

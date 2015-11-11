@@ -18,6 +18,15 @@ import java.util.Set;
  */
 public final class MapsConfiguration implements net.doo.maps.MapsConfiguration {
 
+	private static final MapsConfiguration instance = new MapsConfiguration();
+
+	private MapsConfiguration() {
+	}
+
+	public static MapsConfiguration getInstance() {
+		return instance;
+	}
+
 	@Override
 	public void initialize(Context context) {
 		BitmapDescriptorFactory.initialize(context);

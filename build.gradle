@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-project.ext.versionMajor = "2"
+project.ext.versionMajor = "3"
 project.ext.versionMinor = "0"
 project.ext.versionPatch = "0"
 

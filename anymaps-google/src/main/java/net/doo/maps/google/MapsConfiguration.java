@@ -20,6 +20,15 @@ import static java.util.EnumSet.of;
  */
 public class MapsConfiguration implements net.doo.maps.MapsConfiguration {
 
+	private static final MapsConfiguration instance = new MapsConfiguration();
+
+	private MapsConfiguration() {
+	}
+
+	public static MapsConfiguration getInstance() {
+		return instance;
+	}
+
 	@Override
 	public void initialize(Context context) {
 		com.google.android.gms.maps.MapsInitializer.initialize(context);

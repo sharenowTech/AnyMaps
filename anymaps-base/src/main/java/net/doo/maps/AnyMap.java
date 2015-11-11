@@ -19,8 +19,6 @@ import net.doo.maps.model.PolygonOptions;
 import net.doo.maps.model.Polyline;
 import net.doo.maps.model.PolylineOptions;
 
-import java.util.Set;
-
 /**
  * Provider-independent map controller. Originally was designed to mimic Google Map API and being
  * adapted to other providers. For detailed documentation on each method please refer Google Maps
@@ -68,10 +66,37 @@ public interface AnyMap {
 
 	void setPadding(int left, int top, int right, int bottom);
 
+	void onUserLocationChanged(LatLng location, float accuracy);
+
+
 	enum Type {
 
 		NORMAL,
 		SATELLITE
+
+	}
+
+	/**
+	 * Features of {@link AnyMap} which might be supported or not supported
+	 * by each particular implementation.
+	 */
+	enum Feature {
+
+		/**
+		 * Displaying layer with traffic jams on the map
+		 */
+		TRAFFIC_LAYER,
+
+		/**
+		 * Supporting several {@link net.doo.maps.AnyMap.Type}. If this capability is not present,
+		 * only one of types is implemented (which one - is not specified).
+		 */
+		MAP_TYPES,
+
+		/**
+		 * Supports being invisible at first and being revealed (or simply made visible) later on.
+		 */
+		REVEALABLE
 
 	}
 
@@ -134,25 +159,6 @@ public interface AnyMap {
 		View getInfoWindow(Marker marker);
 
 		View getInfoContents(Marker marker);
-
-	}
-
-	/**
-	 * Special capability of {@link AnyMap} which might be supported or not supported
-	 * by each particular implementation.
-	 */
-	enum Capability {
-
-		/**
-		 * Displaying layer with traffic jams on the map
-		 */
-		TRAFFIC_LAYER,
-
-		/**
-		 * Supporting several {@link net.doo.maps.AnyMap.Type}. If this capability is not present,
-		 * only one of types is implemented (which one - is not specified).
-		 */
-		MAP_TYPES
 
 	}
 

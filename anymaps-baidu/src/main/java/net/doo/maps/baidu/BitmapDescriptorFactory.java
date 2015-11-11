@@ -16,6 +16,15 @@ import net.doo.maps.model.BitmapDescriptor;
  */
 public class BitmapDescriptorFactory implements net.doo.maps.BitmapDescriptorFactory {
 
+	private static final BitmapDescriptorFactory instance = new BitmapDescriptorFactory();
+
+	private BitmapDescriptorFactory() {
+	}
+
+	public static BitmapDescriptorFactory getInstance() {
+		return instance;
+	}
+
 	@Override
 	public BitmapDescriptor fromBitmap(Bitmap bitmap) {
 		return new BaiduBitmapDescriptor(com.baidu.mapapi.map.BitmapDescriptorFactory.fromBitmap(bitmap));

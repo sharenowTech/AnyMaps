@@ -37,13 +37,15 @@ class CameraUpdateHandler {
 		if (osmCameraUpdate.bounds != null) {
 			final LatLng center = osmCameraUpdate.bounds.getCenter();
 
-			controller.setCenter(
-					toGeoPoint(center)
-			);
+			controller.setZoom(map.getMaxZoomLevel());
 
 			controller.zoomToSpan(
 					(int) ((osmCameraUpdate.bounds.northeast.latitude - osmCameraUpdate.bounds.southwest.latitude) * 1e6),
 					(int) ((osmCameraUpdate.bounds.northeast.longitude - osmCameraUpdate.bounds.southwest.longitude) * 1e6)
+			);
+
+			controller.setCenter(
+					toGeoPoint(center)
 			);
 
 			return;

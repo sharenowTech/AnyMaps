@@ -6,6 +6,7 @@
 
 package net.doo.maps.model;
 
+import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -23,6 +24,10 @@ public class LatLng implements Parcelable {
 	 * Longitude on the map
 	 */
 	public final double longitude;
+
+	public static LatLng fromLocation(Location location) {
+		return new LatLng(location.getLatitude(), location.getLongitude());
+	}
 
 	public LatLng(double latitude, double longitude) {
 		this.latitude = latitude;

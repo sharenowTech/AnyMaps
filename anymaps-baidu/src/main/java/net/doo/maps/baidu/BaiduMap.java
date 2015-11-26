@@ -125,7 +125,7 @@ public class BaiduMap implements AnyMap {
 
 			@Override
 			public void setMyLocationButtonEnabled(boolean enabled) {
-				map.setMyLocationEnabled(enabled);
+				// Do nothing
 			}
 
 			@Override

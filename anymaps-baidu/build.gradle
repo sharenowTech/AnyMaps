@@ -3,6 +3,11 @@
  *
  * All rights reserved
  */
+ext {
+    name = 'AnyMaps - Baidu Maps'
+    artifactId = 'anymaps.baidu'
+    description = 'Baidu Maps version of AnyMaps'
+}
 
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
@@ -10,48 +15,6 @@ apply from: '../deployUtils.gradle'
 
 group = "net.doo.anylibs"
 version = "${project.versionMajor}.${project.versionMinor}.${project.versionPatch}"
-
-task installArchives(type: Upload) {
-    configuration = configurations.archives
-    repositories {
-        mavenDeployer {
-            repository(url: 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath)
-
-            project.commonPomSetUp pom
-
-            pom.project {
-                name 'AnyMaps - Baidu Maps'
-                artifactId = 'anymaps.baidu'
-                version = project.version
-
-                description 'Baidu Maps version of AnyMaps'
-            }
-
-            setUniqueVersion false;
-        }
-    }
-}
-
-uploadArchives {
-    configuration = configurations.archives
-    repositories {
-        mavenDeployer {
-            repository(url: "http://repos.mytaxi.com:8081/artifactory/car2go") {
-                authentication(userName: ldapUsername, password: ldapPassword)
-            }
-
-            project.commonPomSetUp pom
-
-            pom.project {
-                name 'AnyMaps - Baidu Maps'
-                artifactId = 'anymaps.baidu'
-                version = project.version
-
-                description 'Baidu Maps version of AnyMaps'
-            }
-        }
-    }
-}
 
 android {
     compileSdkVersion 23

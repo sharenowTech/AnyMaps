@@ -11,7 +11,7 @@ ext {
 
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
-//apply from: '../deployUtils.gradle'
+apply from: '../deployUtils.gradle'
 
 android {
     compileSdkVersion 23

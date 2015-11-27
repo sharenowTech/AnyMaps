@@ -1,33 +1,41 @@
-apply plugin: 'maven'
-apply plugin: 'com.android.library'
-project.ext.commonPomSetUp = { MavenPom pom ->
-    pom.project {
-        packaging 'aar'
-        url 'https://stash.intapps.it/projects/IMSAND/repos/c2g-maps'
+def projectPomSetup = {
+    name = project.name
+    artifactId = project.artifactId
+    version = project.version
+    description = project.description
 
-        scm {
-            url 'scm:git@stash.intapps.it:7999/imsand/c2g-maps.git'
-            connection 'scm:git@stash.intapps.it:7999/imsand/c2g-maps.git'
-            developerConnection 'scm:git@stash.intapps.it:7999/imsand/c2g-maps.git'
+    packaging 'aar'
+    url "https://stash.intapps.it/projects/IMSAND/repos/${project.repoName}"
+
+    scm {
+        url "scm:git@stash.intapps.it:7999/imsand/${project.repoName}.git"
+        connection "scm:git@stash.intapps.it:7999/imsand/${project.repoName}.git"
+        developerConnection "scm:git@stash.intapps.it:7999/imsand/${project.repoName}.git"
+    }
+}
+
+task installArchives(type: Upload) {
+    configuration = configurations.archives
+    repositories {
+        mavenDeployer {
+            repository(url: 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath)
+
+            pom.project projectPomSetup
+
+            setUniqueVersion false;
         }
     }
 }
 
-configurations {
-    archives {
-        extendsFrom configurations.default
+uploadArchives {
+    configuration = configurations.archives
+    repositories {
+        mavenDeployer {
+            repository(url: "http://repos.mytaxi.com:8081/artifactory/car2go") {
+                authentication(userName: ldapUsername, password: ldapPassword)
+            }
+
+            pom.project projectPomSetup
+        }
     }
-}
-/**
- * pack sources jar
- */
-task androidSourcesJar(type: Jar) {
-    classifier = 'sources'
-    from android.sourceSets.main.java.srcDirs
-}
-/**
- * add sources.jar to artifacts
- */
-artifacts {
-    archives androidSourcesJar
 }

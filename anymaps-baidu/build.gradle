@@ -37,4 +37,5 @@ dependencies {
     compile project(':anymaps-base')
 
     compile files('libs/baidu_sdk_v3.6.jar')
+    testCompile 'junit:junit:4.11'
 }

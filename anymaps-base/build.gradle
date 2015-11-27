@@ -13,9 +13,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply from: '../deployUtils.gradle'
 
-group = "net.doo.anylibs"
-version = "${project.versionMajor}.${project.versionMinor}.${project.versionPatch}"
-
 android {
     compileSdkVersion 23
     buildToolsVersion "22.0.1"

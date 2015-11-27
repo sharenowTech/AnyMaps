@@ -1,7 +1,9 @@
+def formattedVersion = "${project.versionMajor}.${project.versionMinor}.${project.versionPatch}"
+
 def projectPomSetup = {
     name = project.name
     artifactId = project.artifactId
-    version = project.version
+    version = formattedVersion
     description = project.description
 
     packaging 'aar'

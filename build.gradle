@@ -24,6 +24,7 @@ allprojects {
         jcenter()
         mavenCentral()
     }
+    group = "net.doo.anylibs"
 }
 
 task clean(type: Delete) {

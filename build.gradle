@@ -24,7 +24,8 @@ allprojects {
         jcenter()
         mavenCentral()
     }
-    group = "net.doo.anylibs"
+    group = 'net.doo.anylibs'
+    version = "${versionMajor}.${versionMinor}.${versionPatch}"
 }
 
 task clean(type: Delete) {

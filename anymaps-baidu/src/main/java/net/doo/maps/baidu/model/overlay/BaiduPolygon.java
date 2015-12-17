@@ -32,6 +32,11 @@ public class BaiduPolygon implements Polygon {
 		this.map = map;
 	}
 
+	public BaiduPolygon(BaiduMap map, com.baidu.mapapi.map.Polygon polygon) {
+		this.map = map;
+		this.polygon = polygon;
+	}
+
 	@Override
 	public void setHoles(List<List<LatLng>> holes) {
 		holePolygons.clear();

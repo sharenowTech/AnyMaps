@@ -9,7 +9,6 @@ package net.doo.maps.baidu.model;
 import com.baidu.mapapi.map.Circle;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.Marker;
-import com.baidu.mapapi.map.Polygon;
 import com.baidu.mapapi.map.Polyline;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.model.LatLngBounds;
@@ -51,8 +50,8 @@ public final class BaiduToModelConverter {
 		return new BaiduPolyline(polyline);
 	}
 
-	public static BaiduPolygon convert(Polygon polygon) {
-		return new BaiduPolygon(polygon);
+	public static BaiduPolygon convert(com.baidu.mapapi.map.BaiduMap map, com.baidu.mapapi.map.Polygon polygon) {
+		return new BaiduPolygon(map, polygon);
 	}
 
 	public static List<net.doo.maps.model.LatLng> convert(List<LatLng> points) {

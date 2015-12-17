@@ -3,7 +3,7 @@
 ext {
     versionMajor = "3"
     versionMinor = "0"
-    versionPatch = "2"
+    versionPatch = "6-marvin"
     repoName = 'c2g-maps'
 }
 
@@ -25,6 +25,7 @@ allprojects {
         mavenCentral()
     }
     group = "net.doo.anylibs"
+    version "${project.versionMajor}.${project.versionMinor}.${project.versionPatch}"
 }
 
 task clean(type: Delete) {

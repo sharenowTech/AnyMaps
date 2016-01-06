@@ -24,10 +24,6 @@ public class BaiduPolygon implements Polygon {
 	private List<com.baidu.mapapi.map.Polygon> holePolygons = new ArrayList<>();
 	private BaiduMap map;
 
-	public BaiduPolygon(com.baidu.mapapi.map.Polygon polygon) {
-		this.polygon = polygon;
-	}
-
 	public BaiduPolygon(BaiduMap map) {
 		this.map = map;
 	}

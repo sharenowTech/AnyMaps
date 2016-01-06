@@ -1,0 +1,38 @@
+/*
+ * Copyright (c) 2015 Daimler AG / Moovel GmbH
+ *
+ * All rights reserved
+ */
+ext {
+    name = 'AnyMaps - Baidu Maps'
+    artifactId = 'anymaps.baidu'
+    description = 'Baidu Maps version of AnyMaps'
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+apply from: '../deployUtils.gradle'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+    compile project(':anymaps-base')
+
+    compile files('libs/baidu_sdk_v3.6.jar')
+    testCompile 'junit:junit:4.11'
+}

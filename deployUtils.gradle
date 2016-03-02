@@ -31,8 +31,8 @@ uploadArchives {
     configuration = configurations.archives
     repositories {
         mavenDeployer {
-            repository(url: "http://repos.mytaxi.com:8081/artifactory/car2go") {
-                authentication(userName: ldapUsername, password: ldapPassword)
+            repository(url: "http://10.20.58.36:8081/artifactory/car2go") {
+                authentication(userName: artifactoryUser, password: artifactoryPassword)
             }
 
             pom.project projectPomSetup

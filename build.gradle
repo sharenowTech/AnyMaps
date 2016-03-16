@@ -1,9 +1,15 @@
+/*
+ * Copyright (c) 2016 Daimler AG / Moovel GmbH
+ *
+ * All rights reserved
+ */
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 ext {
     versionMajor = "3"
     versionMinor = "0"
-    versionPatch = "6"
+    versionPatch = "7-SNAPSHO"
     repoName = 'c2g-maps'
 }
 

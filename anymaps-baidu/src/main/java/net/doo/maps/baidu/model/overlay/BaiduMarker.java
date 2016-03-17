@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Daimler AG / Moovel GmbH
+ * Copyright (c) 2016 Daimler AG / Moovel GmbH
  *
  * All rights reserved
  */
@@ -16,7 +16,6 @@ public class BaiduMarker implements Marker {
 
 	private final com.baidu.mapapi.map.Marker marker;
 	private com.baidu.mapapi.model.LatLng tempPosition;
-
 
 	public BaiduMarker(com.baidu.mapapi.map.Marker marker) {
 		this.marker = marker;
@@ -42,6 +41,11 @@ public class BaiduMarker implements Marker {
 		// Do nothing
 	}
 
+	@Override
+	public void setRotation(float rotation) {
+		marker.setRotate(rotation);
+	}
+
 	private void hide() {
 		marker.setVisible(false);
 		marker.setPosition(new com.baidu.mapapi.model.LatLng(0, 0));
@@ -51,7 +55,6 @@ public class BaiduMarker implements Marker {
 		marker.setPosition(tempPosition);
 		marker.setVisible(true);
 	}
-
 
 	@Override
 	public void setVisible(final boolean visible) {

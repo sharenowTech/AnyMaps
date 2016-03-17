@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Daimler AG / Moovel GmbH
+ * Copyright (c) 2016 Daimler AG / Moovel GmbH
  *
  * All rights reserved
  */
@@ -36,6 +36,11 @@ public class MarkerAdapter implements Marker {
 	@Override
 	public void showInfoWindow() {
 		marker.showInfoWindow();
+	}
+
+	@Override
+	public void setRotation(float rotation) {
+		marker.setRotation(rotation);
 	}
 
 	@Override

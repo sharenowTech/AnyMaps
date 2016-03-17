@@ -107,7 +107,6 @@ public class CameraUpdateHandlerTest {
 				eq((int) (10 * 1e6)),
 				eq((int) (10 * 1e6))
 		);
-		verifyNoMoreInteractions(mapController);
 	}
 
 	@Test

@@ -106,7 +106,7 @@ public class BaiduMap implements AnyMap {
 		com.baidu.mapapi.map.Polygon polygon = (com.baidu.mapapi.map.Polygon) map.addOverlay(ModelToBaiduConverter.convert(options));
 		// draw it on top of "outsider" polygon
 		polygon.setZIndex(1);
-		return BaiduToModelConverter.convert(polygon);
+		return BaiduToModelConverter.convert(map, polygon);
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class BaiduMap implements AnyMap {
 
 			@Override
 			public void setMyLocationButtonEnabled(boolean enabled) {
-				map.setMyLocationEnabled(enabled);
+				// Do nothing
 			}
 
 			@Override

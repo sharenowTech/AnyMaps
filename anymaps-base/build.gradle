@@ -3,59 +3,19 @@
  *
  * All rights reserved
  */
+ext {
+    name = 'AnyMaps - Base Library'
+    artifactId = 'anymaps.base'
+    description = 'Base library for AnyMaps libraries. Contains common interface'
+}
 
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply from: '../deployUtils.gradle'
 
-group = "net.doo.anylibs"
-version = "${project.versionMajor}.${project.versionMinor}.${project.versionPatch}"
-
-task installArchives(type: Upload) {
-    configuration = configurations.archives
-    repositories {
-        mavenDeployer {
-            repository(url: 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath)
-
-            project.commonPomSetUp pom
-
-            pom.project {
-                name 'AnyMaps - Base Library'
-                artifactId = 'anymaps.base'
-                version = project.version
-
-                description 'Base library for AnyMaps libraries. Contains common interface'
-            }
-
-            setUniqueVersion false;
-        }
-    }
-}
-
-uploadArchives {
-    configuration = configurations.archives
-    repositories {
-        mavenDeployer {
-            repository(url: "http://repos.mytaxi.com:8081/artifactory/car2go") {
-                authentication(userName: ldapUsername, password: ldapPassword)
-            }
-
-            project.commonPomSetUp pom
-
-            pom.project {
-                name 'AnyMaps - Base Library'
-                artifactId = 'anymaps.base'
-                version = project.version
-
-                description 'Base library for AnyMaps libraries. Contains common interface'
-            }
-        }
-    }
-}
-
 android {
     compileSdkVersion 23
-    buildToolsVersion "22.0.1"
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         minSdkVersion 15
@@ -69,6 +29,7 @@ android {
         }
     }
 }
+
 dependencies {
     compile 'com.android.support:support-annotations:23.1.0'
 

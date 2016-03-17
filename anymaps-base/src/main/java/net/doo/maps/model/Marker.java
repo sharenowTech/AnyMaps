@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Daimler AG / Moovel GmbH
+ * Copyright (c) 2016 Daimler AG / Moovel GmbH
  *
  * All rights reserved
  */
@@ -27,5 +27,12 @@ public interface Marker extends DrawableComponent {
 	 * Shows information window associated with this marker, if any.
 	 */
 	void showInfoWindow();
+
+	/**
+	 * Sets the rotation of the marker.
+	 *
+	 * @param rotation the rotation value
+	 */
+	void setRotation(float rotation);
 
 }

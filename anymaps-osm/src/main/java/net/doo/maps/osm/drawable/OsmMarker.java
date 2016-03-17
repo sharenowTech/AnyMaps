@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Daimler AG / Moovel GmbH
+ * Copyright (c) 2016 Daimler AG / Moovel GmbH
  *
  * All rights reserved
  */
@@ -8,12 +8,12 @@ package net.doo.maps.osm.drawable;
 
 import android.graphics.drawable.BitmapDrawable;
 
-import net.doo.maps.osm.OsmBitmapDescriptor;
-import net.doo.maps.osm.drawable.overlay.MarkerOverlayItem;
 import net.doo.maps.model.BitmapDescriptor;
 import net.doo.maps.model.LatLng;
 import net.doo.maps.model.Marker;
 import net.doo.maps.model.MarkerOptions;
+import net.doo.maps.osm.OsmBitmapDescriptor;
+import net.doo.maps.osm.drawable.overlay.MarkerOverlayItem;
 import net.doo.maps.osm.util.OsmUtils;
 
 import org.osmdroid.views.MapView;
@@ -75,6 +75,11 @@ public class OsmMarker implements Marker {
 
 	@Override
 	public void showInfoWindow() {
+		// Do nothing
+	}
+
+	@Override
+	public void setRotation(float rotation) {
 		// Do nothing
 	}
 

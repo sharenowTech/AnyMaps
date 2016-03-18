@@ -43,7 +43,7 @@ public class BaiduMarker implements Marker {
 
 	@Override
 	public void setRotation(float rotation) {
-		marker.setRotate(rotation);
+		marker.setRotate(-rotation);
 	}
 
 	private void hide() {

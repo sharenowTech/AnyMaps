@@ -9,7 +9,7 @@
 ext {
     versionMajor = "4"
     versionMinor = "0"
-    versionPatch = "0"
+    versionPatch = "0-D"
     repoName = 'c2g-maps'
 }
 
@@ -18,7 +18,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'com.android.tools.build:gradle:2.0.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

@@ -68,15 +68,6 @@ public class MapView extends MapContainerView {
 	}
 
 	@Override
-	public AnyMap getMap() {
-		if (map == null) {
-			map = new GoogleMapAdapter(mapView.getMap());
-		}
-
-		return map;
-	}
-
-	@Override
 	public void getMapAsync(final OnMapReadyCallback callback) {
 		if (map != null) {
 			callback.onMapReady(map);

@@ -116,4 +116,9 @@ public class OsmMarker implements Marker {
 
 		map.invalidate();
 	}
+
+	@Override
+	public void setZ(float z) {
+		// Do nothing
+	}
 }

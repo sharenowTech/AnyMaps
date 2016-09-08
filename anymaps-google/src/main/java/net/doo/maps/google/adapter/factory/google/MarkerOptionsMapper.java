@@ -32,7 +32,8 @@ public class MarkerOptionsMapper implements Mapper<MarkerOptions, com.google.and
 				)
 				.icon(
 						((BitmapDescriptorAdapter) input.getIcon()).wrappedDescriptor
-				);
+				)
+				.zIndex(input.getZ());
 	}
 
 }

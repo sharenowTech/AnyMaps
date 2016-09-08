@@ -89,4 +89,9 @@ public class BaiduMarker implements Marker {
 	public int hashCode() {
 		return marker.hashCode();
 	}
+
+	@Override
+	public void setZ(float z) {
+		this.marker.setZIndex((int) z);
+	}
 }

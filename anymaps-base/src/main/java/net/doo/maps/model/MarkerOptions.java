@@ -18,6 +18,7 @@ public class MarkerOptions {
 	private float anchorU = 0f;
 	private float anchorV = 0f;
 	private BitmapDescriptor icon;
+	private float z = 0f;
 
 	/**
 	 * @param alpha alpha-level of the marker. In range [0..1]. Default value is 1.
@@ -70,6 +71,11 @@ public class MarkerOptions {
 		return this;
 	}
 
+	public MarkerOptions z(float z) {
+		this.z = z;
+		return this;
+	}
+
 	/**
 	 * @see #alpha(float)
 	 */
@@ -110,6 +116,13 @@ public class MarkerOptions {
 	 */
 	public BitmapDescriptor getIcon() {
 		return icon;
+	}
+
+	/**
+	 * @see #z(float)
+	 */
+	public float getZ() {
+		return z;
 	}
 
 }

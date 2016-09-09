@@ -41,7 +41,8 @@ public final class ModelToBaiduConverter {
 				.icon(convert(options.getIcon()))
 				.position(ModelToBaiduConverter.convert(options.getPosition()))
 				.anchor(options.getAnchorU(), options.getAnchorV())
-				.visible(options.isVisible());
+				.visible(options.isVisible())
+				.zIndex((int) options.getZ());
 	}
 
 	public static com.baidu.mapapi.map.BitmapDescriptor convert(BitmapDescriptor bitmapDescriptor) {

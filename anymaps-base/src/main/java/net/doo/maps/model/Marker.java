@@ -35,4 +35,11 @@ public interface Marker extends DrawableComponent {
 	 */
 	void setRotation(float rotation);
 
+	/**
+	 * Sets the Z index of the marker
+	 *
+	 * @param z z index of the marker
+	 */
+	void setZ(int z);
+
 }

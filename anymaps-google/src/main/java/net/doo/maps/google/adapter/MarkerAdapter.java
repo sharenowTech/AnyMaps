@@ -68,4 +68,8 @@ public class MarkerAdapter implements Marker {
 		return marker.hashCode();
 	}
 
+	@Override
+	public void setZ(int z) {
+		marker.setZIndex(z);
+	}
 }

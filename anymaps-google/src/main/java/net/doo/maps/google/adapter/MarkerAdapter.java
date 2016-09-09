@@ -69,7 +69,7 @@ public class MarkerAdapter implements Marker {
 	}
 
 	@Override
-	public void setZ(float z) {
+	public void setZ(int z) {
 		marker.setZIndex(z);
 	}
 }

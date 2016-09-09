@@ -40,6 +40,6 @@ public interface Marker extends DrawableComponent {
 	 *
 	 * @param z z index of the marker
 	 */
-	void setZ(float z);
+	void setZ(int z);
 
 }

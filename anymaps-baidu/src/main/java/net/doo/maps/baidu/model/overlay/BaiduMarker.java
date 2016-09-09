@@ -91,7 +91,7 @@ public class BaiduMarker implements Marker {
 	}
 
 	@Override
-	public void setZ(float z) {
-		this.marker.setZIndex((int) z);
+	public void setZ(int z) {
+		this.marker.setZIndex(z);
 	}
 }

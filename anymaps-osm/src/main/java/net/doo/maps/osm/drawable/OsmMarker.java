@@ -118,7 +118,7 @@ public class OsmMarker implements Marker {
 	}
 
 	@Override
-	public void setZ(float z) {
+	public void setZ(int z) {
 		// Do nothing
 	}
 }

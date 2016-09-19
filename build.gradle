@@ -9,7 +9,7 @@
 ext {
     versionMajor = "5"
     versionMinor = "2"
-    versionPatch = "0-SNAPSHO"
+    versionPatch = "0"
     repoName = 'c2g-maps'
 }
 

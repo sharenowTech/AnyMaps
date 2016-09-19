@@ -16,20 +16,13 @@ import android.widget.FrameLayout;
  */
 public abstract class MapContainerView extends FrameLayout {
 
-	public MapContainerView(Context context) {
+	protected MapContainerView(Context context) {
 		super(context);
 	}
 
-	public MapContainerView(Context context, AttributeSet attrs) {
+	protected MapContainerView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
-
-	/**
-	 * Gets the wrapped {@link AnyMap}.
-	 *
-	 * @return the map
-	 */
-	public abstract AnyMap getMap();
 
 	/**
 	 * Gets the wrapped {@link AnyMap} asynchronously.

@@ -11,14 +11,13 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.AttributeSet;
 
-import net.doo.maps.AnyMap;
 import net.doo.maps.MapContainerView;
 import net.doo.maps.OnMapReadyCallback;
 
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 
 /**
- * @see net.doo.maps.MapContainerView
+ * @see MapContainerView
  */
 public class MapView extends MapContainerView {
 
@@ -65,11 +64,6 @@ public class MapView extends MapContainerView {
 		} finally {
 			typedArray.recycle();
 		}
-	}
-
-	@Override
-	public AnyMap getMap() {
-		return anyMap;
 	}
 
 	@Override

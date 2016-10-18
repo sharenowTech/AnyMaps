@@ -33,6 +33,6 @@ android {
 dependencies {
     compile project(':anymaps-base')
 
-    compile files('libs/baidu_sdk_v3.6.jar')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.11'
 }

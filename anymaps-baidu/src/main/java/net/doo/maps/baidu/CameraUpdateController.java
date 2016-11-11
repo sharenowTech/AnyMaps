@@ -36,14 +36,22 @@ public class CameraUpdateController {
 	 * @param duration          the animation duration, may be null to use the default
 	 */
 	public void animateMapStatus(BaiduCameraUpdate baiduCameraUpdate, boolean animate, Integer duration) {
+		if (baiduCameraUpdate.bounds == null && baiduCameraUpdate.center == null && baiduCameraUpdate.zoom == null) {
+			throw new IllegalArgumentException("We either need a center, some bounds or a zoom in order to animate.");
+		}
+
 		MapStatusUpdate mapStatusUpdate;
 		if (baiduCameraUpdate.bounds != null) {
+			// Zoom to given bounds
 			mapStatusUpdate = MapStatusUpdateFactory.newLatLngBounds(ModelToBaiduConverter.convert(baiduCameraUpdate.bounds));
 		} else if (baiduCameraUpdate.center == null) {
-			throw new IllegalArgumentException("We either need a center to zoom to or some bounds");
+			// Just zoom in or out
+			mapStatusUpdate = MapStatusUpdateFactory.zoomTo(baiduCameraUpdate.zoom);
 		} else if (baiduCameraUpdate.zoom != null) {
+			// Go to the new center & zoom
 			mapStatusUpdate = MapStatusUpdateFactory.newLatLngZoom(ModelToBaiduConverter.convert(baiduCameraUpdate.center), baiduCameraUpdate.zoom);
 		} else {
+			// Just go to the new center
 			mapStatusUpdate = MapStatusUpdateFactory.newLatLng(ModelToBaiduConverter.convert(baiduCameraUpdate.center));
 		}
 

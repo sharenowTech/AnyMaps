@@ -30,7 +30,7 @@ allprojects {
         jcenter()
         mavenCentral()
     }
-    group = 'net.doo.anylibs'
+    group = 'com.car2go.anylibs'
     version = "${versionMajor}.${versionMinor}.${versionPatch}"
 }
 

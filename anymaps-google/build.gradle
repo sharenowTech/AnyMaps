@@ -11,15 +11,14 @@ ext {
 
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
-apply from: '../deployUtils.gradle'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
     }
@@ -33,7 +32,7 @@ android {
 dependencies {
     compile project(':anymaps-base')
 
-    provided 'com.google.android.gms:play-services-maps:9.4.0'
+    provided 'com.google.android.gms:play-services-maps:10.2.1'
 
     testCompile 'junit:junit:4.11'
     testCompile 'org.powermock:powermock-module-junit4:1.5.2'

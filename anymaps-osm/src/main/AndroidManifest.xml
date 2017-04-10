@@ -4,4 +4,4 @@
   ~ All rights reserved
   -->
 
-<manifest package="net.doo.maps.osm"/>
+<manifest package="com.car2go.maps.osm"/>

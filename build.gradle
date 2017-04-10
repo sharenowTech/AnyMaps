@@ -7,9 +7,9 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 ext {
-    versionMajor = "5"
-    versionMinor = "3"
-    versionPatch = "2-SNAPSHO"
+    versionMajor = "6"
+    versionMinor = "0"
+    versionPatch = "0"
     repoName = 'c2g-maps'
 }
 

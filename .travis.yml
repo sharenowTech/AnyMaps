@@ -1,0 +1,24 @@
+language: android
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-25.0.2
+    - android-25
+    - extra-google-google_play_services
+    - extra-android-m2repository
+    - extra-android-support
+    - extra-google-m2repository
+
+jdk:
+  - oraclejdk8
+
+notifications:
+  email: false
+
+script: ./gradlew check
+
+cache:
+  directories:
+    - $HOME/.m2

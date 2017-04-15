@@ -29,16 +29,16 @@ Choose which kinds of maps you want to use and add the latest version to your pr
 
 ```groovy
 // Required for all projects
-compile com.github.car2go.AnyMaps:anymaps-base:x.y.z
+compile 'com.github.car2go.AnyMaps:anymaps-base:x.y.z'
 
 // [Optional] Google Maps
-compile com.github.car2go.AnyMaps:anymaps-google:x.y.z
+compile 'com.github.car2go.AnyMaps:anymaps-google:x.y.z'
 
 // [Optional] OpenStreet maps
-compile com.github.car2go.AnyMaps:anymaps-osm:x.y.z
+compile 'com.github.car2go.AnyMaps:anymaps-osm:x.y.z'
 
 // [Optional] Baidu maps
-compile com.github.car2go.AnyMaps:anymaps-baidu:x.y.z
+compile 'com.github.car2go.AnyMaps:anymaps-baidu:x.y.z'
 ```
 
 ### About

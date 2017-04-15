@@ -1,18 +1,49 @@
 # AnyMaps
-Lead Maintainer: [Dmitry Zaitsev](https://github.com/dmitry-zaitsev)
 
-### Usage / Description
+AnyMaps allows you to use the same API for different maps providers without the need to adjust existing Google Maps implementation (apart from changing the package name).
 
-```
+We are relying on this library in [car2go](https://www.car2go.com) to allow customers without Google Play Services to use our product.
+
+### Features
+
+* Does not depend on any map provider - you can even use it without Google Maps.
+* Map provider can be changed at runtime.
+* Extendible - new providers can be added without changing the existing code.
+* Map providers supported out of the box: Google Maps, OpenStreet maps, Baidu maps.
+
+### Add it to your project
+
+#### Step one
+
+Add `jitpack.io` to list of your repositories.
+
+```groovy
 repositories {
   maven { url 'https://jitpack.io' }
 }
-
-com.github.car2go.AnyMaps:anymaps-base:6.0.0-rc1
-com.github.car2go.AnyMaps:anymaps-google:6.0.0-rc1
-com.github.car2go.AnyMaps:anymaps-osm:6.0.0-rc1
-com.github.car2go.AnyMaps:anymaps-baidu:6.0.0-rc1
 ```
+
+#### Step two
+
+Choose which kinds of maps you want to use and add the latest version to your project.
+
+```groovy
+// Required for all projects
+com.github.car2go.AnyMaps:anymaps-base:x.y.z
+
+// [Optional] Google Maps
+com.github.car2go.AnyMaps:anymaps-google:x.y.z
+
+// [Optional] OpenStreet maps
+com.github.car2go.AnyMaps:anymaps-osm:x.y.z
+
+// [Optional] Baidu maps
+com.github.car2go.AnyMaps:anymaps-baidu:x.y.z
+```
+
+### About
+
+Lead Maintainer: [Dmitry Zaitsev](https://github.com/dmitry-zaitsev)
 
 ### License
 

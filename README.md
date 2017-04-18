@@ -4,6 +4,9 @@ AnyMaps allows you to use the same API for different maps providers without the 
 
 We are relying on this library in [car2go](https://www.car2go.com) to allow customers without Google Play Services to use our product.
 
+![ ](/screenshot.gif)
+
+
 ## Features
 
 * Does not depend on any map provider - you can even use it without Google Maps.

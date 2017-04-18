@@ -1,7 +1,4 @@
-package com.daimler.car2go;
-
-import com.car2go.maps.model.LatLng;
-import com.car2go.maps.model.RectGeofence;
+package com.car2go.maps.model;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

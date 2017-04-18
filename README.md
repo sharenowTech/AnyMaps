@@ -4,16 +4,16 @@ AnyMaps allows you to use the same API for different maps providers without the 
 
 We are relying on this library in [car2go](https://www.car2go.com) to allow customers without Google Play Services to use our product.
 
-### Features
+## Features
 
 * Does not depend on any map provider - you can even use it without Google Maps.
 * Map provider can be changed at runtime.
 * Easy to extend. New providers can be added without changing the existing code.
 * Map providers supported out of the box: Google Maps, OpenStreet maps, Baidu maps.
 
-### Add it to your project
+## Add it to your project
 
-#### Step one
+### Step one
 
 Add `jitpack.io` to list of your repositories.
 
@@ -23,7 +23,7 @@ repositories {
 }
 ```
 
-#### Step two
+### Step two
 
 Choose which kinds of maps you want to use and add the latest version to your project.
 
@@ -54,7 +54,7 @@ Depending on the maps which you choose you will need to add API keys to your And
 </application>
 ```
 
-#### Step three
+### Step three
 
 Add view to your layout.
 
@@ -70,11 +70,11 @@ And then call `onCreate`, `onResume`, `onPause`, `onSaveInstanceState`, `onDestr
 
 And you are good to go!
 
-### About
+## About
 
 Lead Maintainer: [Dmitry Zaitsev](https://github.com/dmitry-zaitsev)
 
-### License
+## License
 
 ```
 Copyright 2017 car2go group GmbH

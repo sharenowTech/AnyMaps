@@ -1,1 +1,1 @@
-include ':anymaps-base', ':anymaps-google', ':anymaps-osm', ':anymaps-baidu'
+include ':anymaps-base', ':anymaps-google', ':anymaps-osm', ':anymaps-baidu', ':example'

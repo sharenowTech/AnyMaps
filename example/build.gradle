@@ -1,0 +1,39 @@
+/*
+ * Copyright (c) 2017 Daimler AG / Moovel GmbH
+ *
+ * All rights reserved
+ */
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        applicationId "com.car2go.example"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile project(':anymaps-base')
+
+    // If you are adding Google Maps support you also need to add Google Play Services
+    compile project(':anymaps-google')
+    compile 'com.google.android.gms:play-services-maps:10.2.1'
+
+    compile 'com.android.support:appcompat-v7:25.3.1'
+}

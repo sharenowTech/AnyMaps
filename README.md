@@ -8,7 +8,7 @@ We are relying on this library in [car2go](https://www.car2go.com) to allow cust
 
 * Does not depend on any map provider - you can even use it without Google Maps.
 * Map provider can be changed at runtime.
-* Extendible - new providers can be added without changing the existing code.
+* Easy to extend. New providers can be added without changing the existing code.
 * Map providers supported out of the box: Google Maps, OpenStreet maps, Baidu maps.
 
 ### Add it to your project
@@ -30,16 +30,45 @@ Choose which kinds of maps you want to use and add the latest version to your pr
 ```groovy
 // Required for all projects
 compile 'com.github.car2go.AnyMaps:anymaps-base:x.y.z'
-
+ 
 // [Optional] Google Maps
 compile 'com.github.car2go.AnyMaps:anymaps-google:x.y.z'
-
+compile 'com.google.android.gms:play-services-maps:x.y.z'
+ 
 // [Optional] OpenStreet maps
 compile 'com.github.car2go.AnyMaps:anymaps-osm:x.y.z'
-
+ 
 // [Optional] Baidu maps
 compile 'com.github.car2go.AnyMaps:anymaps-baidu:x.y.z'
 ```
+
+Depending on the maps which you choose you will need to add API keys to your AndroidManifest (the same way as you would do it without using AnyMaps). For example, for Google Maps it would be:
+
+```xml
+<application>
+    
+    <meta-data 
+        android:name="com.google.android.geo.API_KEY" 
+        android:value="Your API key"/>
+    
+</application>
+```
+
+#### Step three
+
+Add view to your layout.
+
+```xml
+<!-- There is a MapView implementation for each kind of Map. This example shows Google Maps. -->
+<com.car2go.maps.google.MapView
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+```
+
+And then call `onCreate`, `onResume`, `onPause`, `onSaveInstanceState`, `onDestroy` and `onLowMemory` in your Activity. Check the example app for more details.
+
+And you are good to go!
 
 ### About
 

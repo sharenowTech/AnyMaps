@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2015 Daimler AG / Moovel GmbH
+  ~
+  ~ All rights reserved
+  -->
+
+<manifest
+    package="com.car2go.maps.baidu"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE">
+    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET">
+    </uses-permission>
+    <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>-->
+    <!--<uses-permission android:name="android.permission.WAKE_LOCK" >-->
+    <!--</uses-permission>-->
+    <!--<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />-->
+    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
+    <!-- SDK1.5需要android.permission.GET_TASKS权限判断本程序是否为当前运行的应用? -->
+    <!--<uses-permission android:name="android.permission.GET_TASKS" />-->
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >-->
+    <!--</uses-permission>-->
+    <!--<uses-permission android:name="android.permission.WRITE_SETTINGS" />-->
+    <!-- 这个权限用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- 这个权限用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>-->
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
+    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>-->
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <!--<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>-->
+    <!-- 用于读取手机当前的状态-->
+    <!--<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>-->
+    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!--SD卡读取权限，用户写入离线定位数据-->
+    <!--<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>-->
+    <!--允许应用读取低级别的系统日志文件 -->
+    <!--<uses-permission android:name="android.permission.READ_LOGS"></uses-permission>-->
+
+</manifest>

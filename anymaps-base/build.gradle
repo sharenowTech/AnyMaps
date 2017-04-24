@@ -1,0 +1,36 @@
+/*
+ * Copyright (c) 2015 Daimler AG / Moovel GmbH
+ *
+ * All rights reserved
+ */
+ext {
+    name = 'AnyMaps - Base Library'
+    artifactId = 'anymaps.base'
+    description = 'Base library for AnyMaps libraries. Contains common interface'
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-annotations:25.3.1'
+
+    testCompile 'junit:junit:4.11'
+}

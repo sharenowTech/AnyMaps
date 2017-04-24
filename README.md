@@ -1,5 +1,7 @@
 # AnyMaps
 
+![Build status](https://travis-ci.org/car2go/AnyMaps.svg?branch=master)
+
 AnyMaps allows you to use the same API for different maps providers without the need to adjust existing Google Maps implementation (apart from changing the package name).
 
 We are relying on this library in [car2go](https://www.car2go.com) to allow customers without Google Play Services to use our product.

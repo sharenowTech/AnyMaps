@@ -75,10 +75,6 @@ And then call `onCreate`, `onResume`, `onPause`, `onSaveInstanceState`, `onDestr
 
 And you are good to go!
 
-## About
-
-Lead Maintainer: [Dmitry Zaitsev](https://github.com/dmitry-zaitsev)
-
 ## License
 
 ```

@@ -48,9 +48,9 @@ public class MapView extends MapContainerView {
 			return;
 		}
 
-		TypedArray typedArray = context.obtainStyledAttributes(attrs, com.car2go.maps.baidu.R.styleable.MapView);
+		TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MapView);
 		try {
-			boolean liteMode = typedArray.getBoolean(com.car2go.maps.baidu.R.styleable.MapView_anyMapLiteMode, false);
+			boolean liteMode = typedArray.getBoolean(R.styleable.MapView_anyMapLiteMode, false);
 
 			anyMap.getUiSettings().setAllGesturesEnabled(!liteMode);
 		} finally {

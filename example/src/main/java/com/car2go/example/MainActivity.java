@@ -12,6 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import com.car2go.maps.AnyMap;
 import com.car2go.maps.MapContainerView;
 import com.car2go.maps.OnMapReadyCallback;
+import com.car2go.maps.model.LatLng;
+import com.car2go.maps.model.MarkerOptions;
+import com.car2go.maps.osm.BitmapDescriptorFactory;
+import com.car2go.maps.osm.CameraUpdateFactory;
+import com.car2go.maps.osm.MapsConfiguration;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		MapsConfiguration.getInstance().initialize(this);
+
 		mapView = (MapContainerView) findViewById(R.id.map_view);
 
 		mapView.onCreate(savedInstanceState);
@@ -29,7 +36,22 @@ public class MainActivity extends AppCompatActivity {
 		mapView.getMapAsync(new OnMapReadyCallback() {
 			@Override
 			public void onMapReady(AnyMap anyMap) {
-				// Do something with map
+				anyMap.moveCamera(
+						CameraUpdateFactory.getInstance()
+								.newLatLngZoom(
+										new LatLng(0, 0),
+										5f
+								)
+				);
+
+				anyMap.addMarker(
+						new MarkerOptions()
+								.position(new LatLng(0, 0))
+								.icon(
+										BitmapDescriptorFactory.getInstance()
+												.fromResource(R.drawable.marker)
+								)
+				);
 			}
 		});
 	}

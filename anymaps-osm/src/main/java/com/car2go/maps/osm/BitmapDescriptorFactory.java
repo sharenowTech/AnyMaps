@@ -6,6 +6,7 @@
 
 package com.car2go.maps.osm;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,8 +18,10 @@ import com.car2go.maps.model.BitmapDescriptor;
  */
 public class BitmapDescriptorFactory implements com.car2go.maps.BitmapDescriptorFactory {
 
+	@SuppressLint("StaticFieldLeak")
 	private static Context context;
 
+	@SuppressLint("StaticFieldLeak")
 	private static final BitmapDescriptorFactory instance = new BitmapDescriptorFactory();
 
 	private BitmapDescriptorFactory() {
@@ -50,7 +53,7 @@ public class BitmapDescriptorFactory implements com.car2go.maps.BitmapDescriptor
 
 	private static void ensureInitialized() {
 		if (context == null) {
-			throw new IllegalStateException("Not initialized. Did you forgot to call MapsInitializer?");
+			throw new IllegalStateException("Not initialized. Did you forgot to initialize MapsConfiguration?");
 		}
 	}
 

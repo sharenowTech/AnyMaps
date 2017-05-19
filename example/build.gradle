@@ -33,6 +33,8 @@ dependencies {
 
     // If you are adding Google Maps support you also need to add Google Play Services
     compile project(':anymaps-google')
+    compile project(':anymaps-osm')
+
     compile 'com.google.android.gms:play-services-maps:10.2.1'
 
     compile 'com.android.support:appcompat-v7:25.3.1'

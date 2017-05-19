@@ -12,7 +12,7 @@
     android:layout_height="match_parent"
     tools:context="com.car2go.example.MainActivity">
 
-    <com.car2go.maps.google.MapView
+    <com.car2go.maps.osm.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

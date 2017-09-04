@@ -6,6 +6,8 @@
 
 package com.car2go.maps.model;
 
+import android.support.annotation.ColorInt;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class PolylineOptions {
 	 * @param color color of the line
 	 * @return same {@link PolylineOptions}
 	 */
-	public PolylineOptions color(int color) {
+	public PolylineOptions color(@ColorInt int color) {
 		this.color = color;
 		return this;
 	}

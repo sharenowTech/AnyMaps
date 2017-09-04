@@ -6,6 +6,8 @@
 
 package com.car2go.maps.model;
 
+import android.support.annotation.ColorInt;
+
 /**
  * Accumulates parameters which are required to create {@link Circle} component.
  * Mutable.
@@ -40,7 +42,7 @@ public class CircleOptions {
 	 * @param color color used to fill the circle
 	 * @return same {@link CircleOptions}
 	 */
-	public CircleOptions fillColor(int color) {
+	public CircleOptions fillColor(@ColorInt int color) {
 		fillColor = color;
 		return this;
 	}
@@ -49,7 +51,7 @@ public class CircleOptions {
 	 * @param color color of the circle outline (stroke)
 	 * @return same {@link CircleOptions}
 	 */
-	public CircleOptions strokeColor(int color) {
+	public CircleOptions strokeColor(@ColorInt int color) {
 		strokeColor = color;
 		return this;
 	}

@@ -6,6 +6,8 @@
 
 package com.car2go.maps.model;
 
+import android.support.annotation.ColorInt;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class PolygonOptions {
 	 * @param color color used to fill the polygon
 	 * @return same {@link PolygonOptions}
 	 */
-	public PolygonOptions fillColor(int color) {
+	public PolygonOptions fillColor(@ColorInt int color) {
 		fillColor = color;
 		return this;
 	}
@@ -43,7 +45,7 @@ public class PolygonOptions {
 	 * @param color color of the polygon outline
 	 * @return same {@link PolygonOptions}
 	 */
-	public PolygonOptions strokeColor(int color) {
+	public PolygonOptions strokeColor(@ColorInt int color) {
 		strokeColor = color;
 		return this;
 	}

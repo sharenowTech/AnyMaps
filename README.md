@@ -75,6 +75,9 @@ And then call `onCreate`, `onResume`, `onPause`, `onSaveInstanceState`, `onDestr
 
 And you are good to go!
 
+
+![ ](example/src/main/res/drawable-xxxhdpi/ic_launcher.png)
+
 ## License
 
 ```

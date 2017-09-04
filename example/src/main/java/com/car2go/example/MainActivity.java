@@ -39,14 +39,15 @@ public class MainActivity extends AppCompatActivity {
 				anyMap.moveCamera(
 						CameraUpdateFactory.getInstance()
 								.newLatLngZoom(
-										new LatLng(0, 0),
-										5f
+										new LatLng(53.5443465, 9.9289326),
+										17f
 								)
 				);
 
 				anyMap.addMarker(
 						new MarkerOptions()
-								.position(new LatLng(0, 0))
+								.position(new LatLng(53.5443465, 9.9289326))
+								.anchor(0.5f, 0.5f)
 								.icon(
 										BitmapDescriptorFactory.getInstance()
 												.fromResource(R.drawable.marker)
